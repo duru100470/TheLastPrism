@@ -44,6 +44,25 @@ public class Player : MonoBehaviour
         stateMachine.DoOperateFixedUpdate();
     }
 
+    public void HorizontalMove(float h)
+    {
+        // Check Side
+        RaycastHit2D raycastHit2DRight = Physics2D.Raycast(rigid2d.position, Vector3.right, 0.35f, LayerMask.GetMask("Ground"));
+        RaycastHit2D raycastHit2DLeft = Physics2D.Raycast(rigid2d.position, Vector3.left, 0.35f, LayerMask.GetMask("Ground"));
+
+        if (raycastHit2DRight.collider == null && h > 0)
+            rigid2d.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+
+        if (raycastHit2DLeft.collider == null && h < 0)
+            rigid2d.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+
+        if (rigid2d.velocity.x > MaxSpeed)
+            rigid2d.velocity = new Vector2(MaxSpeed, rigid2d.velocity.y);
+
+        if (rigid2d.velocity.x < MaxSpeed * (-1))
+            rigid2d.velocity = new Vector2(MaxSpeed * (-1), rigid2d.velocity.y);
+    }
+
     public bool IsThereLand()
     {
         Vector2 Pos1 = new Vector2(rigid2d.position.x + 0.25f, rigid2d.position.y);

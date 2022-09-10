@@ -21,6 +21,7 @@ public class PlayerIdle : IState
     }
     public void OperateUpdate()
     {
+        // Transition
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             player.stateMachine.SetState(new PlayerRun(player));

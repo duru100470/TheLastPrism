@@ -34,27 +34,17 @@ public class PlayerJump : IState
     {
         float h = Input.GetAxisRaw("Horizontal");
 
-        // Check Side
-        RaycastHit2D raycastHit2DRight = Physics2D.Raycast(player.rigid2d.position, Vector3.right, 0.35f, LayerMask.GetMask("Ground"));
-        RaycastHit2D raycastHit2DLeft = Physics2D.Raycast(player.rigid2d.position, Vector3.left, 0.35f, LayerMask.GetMask("Ground"));
+        player.HorizontalMove(h);
 
-        if (raycastHit2DRight.collider == null && h > 0)
-            player.rigid2d.AddForce(Vector2.right * h, ForceMode2D.Impulse);
-
-        if (raycastHit2DLeft.collider == null && h < 0)
-            player.rigid2d.AddForce(Vector2.right * h, ForceMode2D.Impulse);
-
-        if (player.rigid2d.velocity.x > player.MaxSpeed)
-            player.rigid2d.velocity = new Vector2(player.MaxSpeed, player.rigid2d.velocity.y);
-
-        if (player.rigid2d.velocity.x < player.MaxSpeed * (-1))
-            player.rigid2d.velocity = new Vector2(player.MaxSpeed * (-1), player.rigid2d.velocity.y);
-
+        // Transition
         if (player.rigid2d.velocity.y < 0)
         {
             if (player.IsThereLand())
             {
-                player.stateMachine.SetState(new PlayerIdle(player));
+                if (h == 0)
+                    player.stateMachine.SetState(new PlayerIdle(player));
+                else
+                    player.stateMachine.SetState(new PlayerRun(player));
             }
         }
     }
