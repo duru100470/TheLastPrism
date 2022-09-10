@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerDead : IState
 {
-    private PlayerStateManager player;
+    private Player player;
 
-    public PlayerDead(PlayerStateManager player)
+    public PlayerDead(Player player)
     {
         this.player = player;
     }

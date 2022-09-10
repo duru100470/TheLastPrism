@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerStun : IState
 {
-    private PlayerStateManager player;
+    private Player player;
 
-    public PlayerStun(PlayerStateManager player)
+    public PlayerStun(Player player)
     {
         this.player = player;
     }
