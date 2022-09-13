@@ -6,63 +6,50 @@ public enum TileType
 {
     Dirt,
     Stone,
-    Default   
+    Debug
 }
 
 public class Coordinate
 {
-    public int X { get; set; }
-    public int Y { get; set; }
-    public int distance { get; set; }
+    private readonly int x;
+    private readonly int y;
+    public int X => x;
+    public int Y => y;
+
     public Coordinate(int x, int y)
     {
-        X = x;
-        Y = y;
+        this.x = x;
+        this.y = y;
     }
-    public Coordinate(int x, int y, int _distance)
+
+    public override int GetHashCode()
     {
-        X = x;
-        Y = y;
-        distance = _distance;
+        return x ^ y;
     }
-    public static Coordinate operator*(Coordinate p1, int scalar)
+
+    public override bool Equals(object obj)
     {
-        return new Coordinate(p1.X * scalar, p1.Y * scalar);
+        if (obj == null)
+            return false;
+
+        if (GetType() != obj.GetType())
+            return false;
+
+        Coordinate point = (Coordinate)obj;
+
+        if (x != point.x)
+            return false;
+
+        return y == point.y;
     }
-    public static float EuclideanDist(Coordinate p1, Coordinate p2)
+
+    public static bool operator ==(Coordinate c1, Coordinate c2)
     {
-        return Mathf.Sqrt((p1.X - p2.X) * (p1.X - p2.X) + (p1.Y - p2.Y) * (p1.Y - p2.Y));
+        return Object.Equals(c1, c2);
     }
-    public static int Distance(Coordinate p1, Coordinate p2)
+
+    public static bool operator !=(Coordinate c1, Coordinate c2)
     {
-        return Mathf.Abs(p1.X - p2.X) + Mathf.Abs(p1.Y - p2.Y);
-    }
-    public static Coordinate operator+(Coordinate p1, Coordinate p2)
-    {
-        return new Coordinate(p1.X + p2.X, p1.Y + p2.Y);
-    }
-    public static Coordinate operator -(Coordinate p1, Coordinate p2)
-    {
-        return new Coordinate(p1.X - p2.X, p1.Y - p2.Y);
-    }
-    public Coordinate GetUpTile()
-    {
-        Coordinate ret = new Coordinate(X, Y + 1);
-        return ret;
-    }
-    public Coordinate GetDownTile()
-    {
-        Coordinate ret = new Coordinate(X, Y - 1);
-        return ret;
-    }
-    public Coordinate GetLeftTile()
-    {
-        Coordinate ret = new Coordinate(X - 1, Y);
-        return ret;
-    }
-    public Coordinate GetRightTile()
-    {
-        Coordinate ret = new Coordinate(X + 1, Y);
-        return ret;
+        return !Object.Equals(c1, c2);
     }
 }

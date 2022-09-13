@@ -9,6 +9,11 @@ public class TileManager : MonoBehaviour
     public Tile[,] TileArray {get; set;}
     public int worldXSize {get; set;}
     public int worldYSize {get; set;}
+    
+    [Header("Debug")]
+    [SerializeField]
+    private GameObject tile;
+    private GameObject tileParent;
 
     private void Awake()
     {
@@ -21,37 +26,29 @@ public class TileManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        tileParent = new GameObject("TileParant");
     }
 
-    public Tile GetLeftTile(int x, int y)
+    public void PlaceTile(Coordinate coor)
     {
-        if (x == 0)
-            return null;
+        GameObject newTile = Instantiate(tile);
+        newTile.transform.parent = tileParent.transform;
+        newTile.transform.position = new Vector2(coor.X + 0.5f, coor.Y + 0.5f);
+        TileArray[coor.X, coor.Y] = newTile.GetComponent<RuleTile>();
+        newTile.GetComponent<RuleTile>().Pos = coor;
+        newTile.GetComponent<RuleTile>().TileType = TileType.Debug;
 
-        return TileArray[x-1, y];
+        // Notify Tile has changed
+        EventManager.Instance.PostNotification(EVENT_TYPE.AdjacentTileChange, null, coor);
     }
 
-    public Tile GetRightTile(int x, int y)
+    public void DestroyTile(Coordinate coor)
     {
-        if (x == worldXSize)
-            return null;
+        Destroy(TileArray[coor.X, coor.Y].gameObject);
+        TileArray[coor.X, coor.Y] = null;
 
-        return TileArray[x+1, y];
-    }
-
-    public Tile GetUpTile(int x, int y)
-    {
-        if (y == worldYSize)
-            return null;
-
-        return TileArray[x, y + 1];
-    }
-    
-    public Tile GetDownTile(int x, int y)
-    {
-        if (y == 0)
-            return null;
-
-        return TileArray[x, y - 1];
+        // Notify Tile has changed
+        EventManager.Instance.PostNotification(EVENT_TYPE.AdjacentTileChange, null, coor);
     }
 }

@@ -29,8 +29,6 @@ public class TerrainGenerator : MonoBehaviour
     private float seed;
     [SerializeField]
     private Texture2D noiseTexture;
-    [SerializeField]
-    private Sprite tile;
 
     private void Start()
     {
@@ -78,13 +76,7 @@ public class TerrainGenerator : MonoBehaviour
             {
                 if (noiseTexture.GetPixel(x, y).r > 0.2f)
                 {
-                    GameObject newTile = new GameObject(name = "tile");
-                    newTile.transform.parent = this.transform;
-                    newTile.AddComponent<SpriteRenderer>();
-                    newTile.AddComponent<Tile>();
-                    newTile.GetComponent<SpriteRenderer>().sprite = tile;
-                    newTile.transform.position = new Vector2(x + 0.5f, y + 0.5f);
-                    TileManager.Instance.TileArray[x, y] = newTile.GetComponent<Tile>();
+                    TileManager.Instance.PlaceTile(new Coordinate(x, y));
                 }
             }
         }
