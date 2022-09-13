@@ -41,6 +41,9 @@ public class TileManager : MonoBehaviour
 
         // Notify Tile has changed
         EventManager.Instance.PostNotification(EVENT_TYPE.AdjacentTileChange, null, coor);
+        
+        // Update adjacent rule tiles
+        UpdateAdjacentRuleTile(coor);
     }
 
     public void DestroyTile(Coordinate coor)
@@ -50,5 +53,28 @@ public class TileManager : MonoBehaviour
 
         // Notify Tile has changed
         EventManager.Instance.PostNotification(EVENT_TYPE.AdjacentTileChange, null, coor);
+
+        // Update adjacent rule tiles
+        UpdateAdjacentRuleTile(coor);
+    }
+
+    public void UpdateAdjacentRuleTile(Coordinate coor)
+    {
+        if (coor.X != 0 && coor.Y != 0)
+            (TileArray[coor.X - 1, coor.Y - 1] as RuleTile)?.UpdateRuleTile();
+        if (coor.Y != 0)
+            (TileArray[coor.X, coor.Y - 1] as RuleTile)?.UpdateRuleTile();
+        if (coor.X != worldXSize - 1 && coor.Y != 0)
+            (TileArray[coor.X + 1, coor.Y - 1] as RuleTile)?.UpdateRuleTile();
+        if (coor.X != 0)
+            (TileArray[coor.X - 1, coor.Y] as RuleTile)?.UpdateRuleTile();
+        if (coor.X != worldXSize - 1)
+            (TileArray[coor.X + 1, coor.Y] as RuleTile)?.UpdateRuleTile();
+        if (coor.X != 0 && coor.Y != worldYSize - 1)
+            (TileArray[coor.X - 1, coor.Y + 1] as RuleTile)?.UpdateRuleTile();
+        if (coor.Y != worldYSize - 1)
+            (TileArray[coor.X, coor.Y + 1] as RuleTile)?.UpdateRuleTile();
+        if (coor.X != worldXSize - 1 && coor.Y != worldYSize - 1)
+            (TileArray[coor.X + 1, coor.Y + 1] as RuleTile)?.UpdateRuleTile();
     }
 }

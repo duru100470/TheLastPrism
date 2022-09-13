@@ -22,11 +22,11 @@ public class RuleTile : Tile, IListener
         switch(eType)
         {
             case EVENT_TYPE.AdjacentTileChange:
-                Coordinate coor = param as Coordinate;
-                if (Mathf.Abs(coor.X - Pos.X) > 1 || Mathf.Abs(coor.Y - Pos.Y) > 1)
-                    return;
+                // Coordinate coor = param as Coordinate;
+                // if (Mathf.Abs(coor.X - Pos.X) > 1 || Mathf.Abs(coor.Y - Pos.Y) > 1)
+                //     return;
                 
-                UpdateRuleTile();
+                // UpdateRuleTile();
                 break;
             default:
                 break;
