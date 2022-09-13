@@ -34,9 +34,17 @@ public class TerrainGenerator : MonoBehaviour
 
     private void Start()
     {
+        // Randomize map seed
         seed = Random.Range(-10000, 10000);
         leftSeaDepth += (int)seed % 10;
         rightSeaDepth += ((int)seed + 5) % 10;
+
+        // Initialize TileManager 
+        TileManager.Instance.TileArray = new Tile[worldXSize, worldYSize];
+        TileManager.Instance.worldXSize = worldXSize;
+        TileManager.Instance.worldYSize = worldYSize;
+
+        // Generate map
         GenerateNoiseTexture();
         GenerateTerrain();
     }
@@ -73,8 +81,10 @@ public class TerrainGenerator : MonoBehaviour
                     GameObject newTile = new GameObject(name = "tile");
                     newTile.transform.parent = this.transform;
                     newTile.AddComponent<SpriteRenderer>();
+                    newTile.AddComponent<Tile>();
                     newTile.GetComponent<SpriteRenderer>().sprite = tile;
                     newTile.transform.position = new Vector2(x + 0.5f, y + 0.5f);
+                    TileManager.Instance.TileArray[x, y] = newTile.GetComponent<Tile>();
                 }
             }
         }

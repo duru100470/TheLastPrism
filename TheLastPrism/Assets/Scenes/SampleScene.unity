@@ -381,11 +381,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ec31eda5db1034a9465fd6769bb622, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldXSize: 200
-  worldYSize: 100
-  heightMultiplier: 15
-  heightAddition: 20
-  noiseFreq: 0.05
+  worldXSize: 300
+  worldYSize: 200
+  planeWidth: 100
+  seaWidth: 20
+  leftSeaDepth: 40
+  rightSeaDepth: 40
+  heightMultiplier: 20
+  heightAddition: 100
+  caveFreq: 0.05
+  terrainFreq: 0.04
   seed: 0
   noiseTexture: {fileID: 0}
   tile: {fileID: 7482667652216324306, guid: 26a019da0d6359c4eb989b99c7f434e6, type: 3}
@@ -403,4 +408,48 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1413166236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1413166238}
+  - component: {fileID: 1413166237}
+  m_Layer: 0
+  m_Name: TileManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1413166237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413166236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811ed6708b34e1e449906c0a9e4adfc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1413166238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413166236}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7572375, y: -0.97662497, z: -0.06398554}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
