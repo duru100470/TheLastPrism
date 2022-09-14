@@ -9,6 +9,7 @@ public class TileManager : MonoBehaviour
     public Tile[,] TileArray {get; set;}
     public int worldXSize {get; set;}
     public int worldYSize {get; set;}
+    public bool IsGenerating {get; set;} = true;
     
     [Header("Debug")]
     [SerializeField]
@@ -43,7 +44,8 @@ public class TileManager : MonoBehaviour
         EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);
         
         // Update adjacent rule tiles
-        // UpdateAdjacentRuleTile(coor);
+        if (IsGenerating) return;
+        UpdateAdjacentRuleTile(coor);
     }
 
     public void DestroyTile(Coordinate coor)
