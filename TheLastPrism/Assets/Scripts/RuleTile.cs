@@ -265,8 +265,8 @@ public class RuleTile : Tile
             IsThereDownTile() &&
             !IsThereLeftUpTile() &&
             IsThereRightUpTile() && 
-            IsThereLeftDownTile() && 
-            !IsThereRightDownTile()
+            !IsThereLeftDownTile() && 
+            IsThereRightDownTile()
         )
             spriteRenderer.sprite = ruleTileSprites[23];
 
@@ -342,9 +342,7 @@ public class RuleTile : Tile
             IsThereUpTile() &&
             !IsThereDownTile() &&
             !IsThereLeftUpTile() &&
-            IsThereRightUpTile() && 
-            IsThereLeftDownTile() && 
-            IsThereRightDownTile()
+            IsThereRightUpTile()
         )
             spriteRenderer.sprite = ruleTileSprites[29];
 
@@ -355,9 +353,7 @@ public class RuleTile : Tile
             IsThereUpTile() &&
             !IsThereDownTile() &&
             IsThereLeftUpTile() &&
-            !IsThereRightUpTile() && 
-            IsThereLeftDownTile() && 
-            IsThereRightDownTile()
+            !IsThereRightUpTile()
         )
             spriteRenderer.sprite = ruleTileSprites[30];
 
@@ -367,9 +363,7 @@ public class RuleTile : Tile
             IsThereRightTile() &&
             IsThereUpTile() &&
             IsThereDownTile() &&
-            IsThereLeftUpTile() &&
             !IsThereRightUpTile() && 
-            IsThereLeftDownTile() && 
             IsThereRightDownTile()
         )
             spriteRenderer.sprite = ruleTileSprites[31];
@@ -380,9 +374,7 @@ public class RuleTile : Tile
             IsThereRightTile() &&
             IsThereUpTile() &&
             IsThereDownTile() &&
-            IsThereLeftUpTile() &&
             IsThereRightUpTile() && 
-            IsThereLeftDownTile() && 
             !IsThereRightDownTile()
         )
             spriteRenderer.sprite = ruleTileSprites[32];
@@ -393,8 +385,6 @@ public class RuleTile : Tile
             IsThereRightTile() &&
             !IsThereUpTile() &&
             IsThereDownTile() &&
-            IsThereLeftUpTile() &&
-            IsThereRightUpTile() && 
             IsThereLeftDownTile() && 
             !IsThereRightDownTile()
         )
@@ -406,8 +396,6 @@ public class RuleTile : Tile
             IsThereRightTile() &&
             !IsThereUpTile() &&
             IsThereDownTile() &&
-            IsThereLeftUpTile() &&
-            IsThereRightUpTile() && 
             !IsThereLeftDownTile() && 
             IsThereRightDownTile()
         )
@@ -420,9 +408,7 @@ public class RuleTile : Tile
             IsThereUpTile() &&
             IsThereDownTile() &&
             IsThereLeftUpTile() &&
-            IsThereRightUpTile() && 
-            !IsThereLeftDownTile() && 
-            IsThereRightDownTile()
+            !IsThereLeftDownTile()
         )
             spriteRenderer.sprite = ruleTileSprites[35];
 
@@ -433,9 +419,7 @@ public class RuleTile : Tile
             IsThereUpTile() &&
             IsThereDownTile() &&
             !IsThereLeftUpTile() &&
-            IsThereRightUpTile() && 
-            IsThereLeftDownTile() && 
-            IsThereRightDownTile()
+            IsThereLeftDownTile()
         )
             spriteRenderer.sprite = ruleTileSprites[36];
 
@@ -464,8 +448,91 @@ public class RuleTile : Tile
             IsThereRightDownTile()
         )
             spriteRenderer.sprite = ruleTileSprites[38];
-    }
 
+        // Left Up RD
+        if (
+            !IsThereLeftTile() &&
+            IsThereRightTile() &&
+            !IsThereUpTile() &&
+            IsThereDownTile() &&
+            !IsThereRightDownTile()
+        )
+            spriteRenderer.sprite = ruleTileSprites[39];
+
+        // Right Up LD
+        if (
+            IsThereLeftTile() &&
+            !IsThereRightTile() &&
+            !IsThereUpTile() &&
+            IsThereDownTile() &&
+            !IsThereLeftDownTile()
+        )
+            spriteRenderer.sprite = ruleTileSprites[40];
+
+        // Left Down RU
+        if (
+            !IsThereLeftTile() &&
+            IsThereRightTile() &&
+            IsThereUpTile() &&
+            !IsThereDownTile() &&
+            !IsThereRightUpTile() 
+        )
+            spriteRenderer.sprite = ruleTileSprites[41];
+
+        // Right Down LU
+        if (
+            IsThereLeftTile() &&
+            !IsThereRightTile() &&
+            IsThereUpTile() &&
+            !IsThereDownTile() &&
+            !IsThereLeftUpTile()
+        )
+            spriteRenderer.sprite = ruleTileSprites[42];
+
+        // LU RU Down
+        if (
+            IsThereLeftTile() &&
+            IsThereRightTile() &&
+            IsThereUpTile() &&
+            !IsThereDownTile() &&
+            !IsThereLeftUpTile() &&
+            !IsThereRightUpTile() 
+        )
+            spriteRenderer.sprite = ruleTileSprites[43];
+
+        // RU RD Left
+        if (
+            !IsThereLeftTile() &&
+            IsThereRightTile() &&
+            IsThereUpTile() &&
+            IsThereDownTile() &&
+            !IsThereRightUpTile() && 
+            !IsThereRightDownTile()
+        )
+            spriteRenderer.sprite = ruleTileSprites[44];
+
+        // LD RD Up
+        if (
+            IsThereLeftTile() &&
+            IsThereRightTile() &&
+            !IsThereUpTile() &&
+            IsThereDownTile() &&
+            !IsThereLeftDownTile() &&
+            !IsThereRightDownTile()
+        )
+            spriteRenderer.sprite = ruleTileSprites[45];
+
+        // LU LD Right
+        if (
+            IsThereLeftTile() &&
+            !IsThereRightTile() &&
+            IsThereUpTile() &&
+            IsThereDownTile() &&
+            !IsThereLeftUpTile() &&
+            !IsThereLeftDownTile() 
+        )
+            spriteRenderer.sprite = ruleTileSprites[46];
+    }
     private bool IsThereLeftTile()
     {
         if (Pos.X == 0) return false;
