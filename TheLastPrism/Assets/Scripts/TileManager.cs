@@ -40,10 +40,10 @@ public class TileManager : MonoBehaviour
         newTile.GetComponent<RuleTile>().TileType = TileType.Debug;
 
         // Notify Tile has changed
-        EventManager.Instance.PostNotification(EVENT_TYPE.AdjacentTileChange, null, coor);
+        EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);
         
         // Update adjacent rule tiles
-        UpdateAdjacentRuleTile(coor);
+        // UpdateAdjacentRuleTile(coor);
     }
 
     public void DestroyTile(Coordinate coor)
@@ -52,7 +52,7 @@ public class TileManager : MonoBehaviour
         TileArray[coor.X, coor.Y] = null;
 
         // Notify Tile has changed
-        EventManager.Instance.PostNotification(EVENT_TYPE.AdjacentTileChange, null, coor);
+        EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);
 
         // Update adjacent rule tiles
         UpdateAdjacentRuleTile(coor);

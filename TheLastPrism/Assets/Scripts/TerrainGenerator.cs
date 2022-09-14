@@ -45,6 +45,11 @@ public class TerrainGenerator : MonoBehaviour
         // Generate map
         GenerateNoiseTexture();
         GenerateTerrain();
+        for (int x = 0; x < worldXSize; x++)
+            for (int y = 0; y < worldYSize; y++)
+            {
+                ( TileManager.Instance.TileArray[x, y] as RuleTile )?.UpdateRuleTile();
+            }
     }
 
     public void GenerateTerrain()

@@ -3,7 +3,6 @@ using UnityEngine;
 public enum EVENT_TYPE
 {
     TileChange,
-    AdjacentTileChange
 }
 
 public interface IListener
