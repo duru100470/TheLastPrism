@@ -15,6 +15,8 @@ public class TileManager : MonoBehaviour
     [SerializeField]
     private GameObject tile;
     private GameObject tileParent;
+    [SerializeField]
+    private bool isDebugMod;
 
     private void Awake()
     {
@@ -31,6 +33,27 @@ public class TileManager : MonoBehaviour
         tileParent = new GameObject("TileParant");
     }
 
+    private void Update()
+    {
+        if (!isDebugMod) return;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Coordinate coor = new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
+            if (TileArray[coor.X, coor.Y] == null)
+                PlaceTile(coor);
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Coordinate coor = new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
+            if (TileArray[coor.X, coor.Y] != null)
+                DestroyTile(coor);
+        }
+    }
+
     public void PlaceTile(Coordinate coor)
     {
         GameObject newTile = Instantiate(tile);
@@ -43,7 +66,7 @@ public class TileManager : MonoBehaviour
         tmp.Pos = coor;
         tmp.TileType = TileType.Debug;
 
-        // Notify Tile has changed
+        // Notify Tile has changed        
         EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);
 
         // Update rule tiles
