@@ -6,6 +6,6 @@ public class Tile : MonoBehaviour
 {
     [SerializeField]
     private int health;
-    public Coordinate Pos;
-    public TileType TileType;
+    public Coordinate Pos { get; set; }
+    public TileType TileType { get; set; }
 }

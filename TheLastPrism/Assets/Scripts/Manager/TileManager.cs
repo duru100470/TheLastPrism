@@ -6,11 +6,11 @@ public class TileManager : MonoBehaviour
 {
     private static TileManager _instance = null;
     public static TileManager Instance => _instance;
-    public Tile[,] TileArray {get; set;}
-    public int worldXSize {get; set;}
-    public int worldYSize {get; set;}
-    public bool IsGenerating {get; set;} = true;
-    
+    public Tile[,] TileArray { get; set; }
+    public int worldXSize { get; set; }
+    public int worldYSize { get; set; }
+    public bool IsGenerating { get; set; } = true;
+
     [Header("Debug")]
     [SerializeField]
     private GameObject tile;
@@ -36,15 +36,19 @@ public class TileManager : MonoBehaviour
         GameObject newTile = Instantiate(tile);
         newTile.transform.parent = tileParent.transform;
         newTile.transform.position = new Vector2(coor.X + 0.5f, coor.Y + 0.5f);
-        TileArray[coor.X, coor.Y] = newTile.GetComponent<RuleTile>();
-        newTile.GetComponent<RuleTile>().Pos = coor;
-        newTile.GetComponent<RuleTile>().TileType = TileType.Debug;
+
+        // Initialize Tile Class
+        var tmp = newTile.GetComponent<Tile>();
+        TileArray[coor.X, coor.Y] = tmp;
+        tmp.Pos = coor;
+        tmp.TileType = TileType.Debug;
 
         // Notify Tile has changed
         EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);
-        
-        // Update adjacent rule tiles
+
+        // Update rule tiles
         if (IsGenerating) return;
+        (tmp as RuleTile)?.UpdateRuleTile();
         UpdateAdjacentRuleTile(coor);
     }
 

@@ -427,7 +427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldXSize: 300
   worldYSize: 200
-  planeWidth: 100
+  planeWidth: 50
   seaWidth: 20
   leftSeaDepth: 40
   rightSeaDepth: 40

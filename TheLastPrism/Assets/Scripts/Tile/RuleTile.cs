@@ -11,10 +11,6 @@ public class RuleTile : Tile
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    private void Start() {
-        UpdateRuleTile();
-    }
     
     public void UpdateRuleTile()
     {
