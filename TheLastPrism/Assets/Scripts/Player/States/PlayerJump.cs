@@ -21,6 +21,8 @@ public class PlayerJump : IState
             return;
         }
 
+        player.rigid2d.velocity = new Vector2(player.rigid2d.velocity.x, 0);
+        player.IsCoyoteTimeEnable = false;
         player.StartCoroutine(ControlJump());
 
         player.IsJumping = true;
@@ -30,6 +32,7 @@ public class PlayerJump : IState
     {
         player.IsJumping = false;
         player.JumpCount = player.JumpMaxCount;
+        player.IsCoyoteTimeEnable = true;
 
         player.anim.SetBool("isJumping", false);
         player.anim.speed = 0.3f;

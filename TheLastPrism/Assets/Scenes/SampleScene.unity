@@ -488,6 +488,7 @@ MonoBehaviour:
   jumpPower: 17
   jumpMaxCount: 1
   jumpMaxTime: 0.25
+  coyoteTime: 0.05
 --- !u!212 &658782011
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -14,14 +14,17 @@ public class Player : MonoBehaviour
     private int jumpMaxCount;
     [SerializeField]
     private float jumpMaxTime;
+    [SerializeField]
+    private float coyoteTime;
     public float JumpTime { get; set; } = 0f;
-    public int JumpCount { set; get; }
-    public bool IsJumping { set; get; }
+    public int JumpCount { get; set; }
+    public bool IsJumping { get; set; }
+    public bool IsCoyoteTimeEnable { get; set; }
 
-    public SpriteRenderer spriteRenderer { set; get; }
-    public Rigidbody2D rigid2d { set; get; }
-    public Collider2D coll { set; get; }
-    public Animator anim { set; get; }
+    public SpriteRenderer spriteRenderer { get; set; }
+    public Rigidbody2D rigid2d { get; set; }
+    public Collider2D coll { get; set; }
+    public Animator anim { get; set; }
 
     public float MaxSpeed => maxSpeed;
     public float MaxFallingSpeed => maxFallingSpeed;
@@ -98,7 +101,19 @@ public class Player : MonoBehaviour
         }
         else
         {
+            if (IsCoyoteTimeEnable)
+            {
+                StartCoroutine(DelayCoyoteTime(coyoteTime));
+                return true;
+            }
             return false;
         }
+    }
+
+    private IEnumerator DelayCoyoteTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        IsCoyoteTimeEnable = false;
+        yield return null;
     }
 }
