@@ -14,7 +14,7 @@ public class PlayerJump : IState
     public void OperateEnter()
     {
         player.anim.SetBool("isJumping", true);
-        player.anim.speed = 0.8f;
+        player.anim.speed = 0.7f;
 
         if (player.IsThereLand() == false || player.JumpCount == 0)
         {
