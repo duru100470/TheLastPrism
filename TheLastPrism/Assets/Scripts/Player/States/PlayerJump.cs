@@ -21,7 +21,8 @@ public class PlayerJump : IState
             return;
         }
 
-        player.rigid2d.AddForce(Vector2.up * player.JumpPower, ForceMode2D.Impulse);
+        player.StartCoroutine(ControlJump());
+
         player.IsJumping = true;
         player.JumpCount--;
     }
@@ -57,5 +58,19 @@ public class PlayerJump : IState
                     player.stateMachine.SetState(new PlayerRun(player));
             }
         }
+    }
+
+    private IEnumerator ControlJump()
+    {
+        for (player.JumpTime = 0; player.JumpTime <= player.JumpMaxTime; player.JumpTime += 0.05f)
+        {
+            player.rigid2d.AddForce(Vector2.up * player.JumpPower * (player.JumpMaxTime - player.JumpTime), ForceMode2D.Impulse);
+            
+            if (Input.GetKey(KeyCode.Space))
+                yield return new WaitForSeconds(0.05f);
+            else
+                break;
+        }
+        yield return null;
     }
 }

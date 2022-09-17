@@ -485,8 +485,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 5
   maxFallingSpeed: 20
-  jumpPower: 12
+  jumpPower: 17
   jumpMaxCount: 1
+  jumpMaxTime: 0.25
 --- !u!212 &658782011
 SpriteRenderer:
   m_ObjectHideFlags: 0

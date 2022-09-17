@@ -12,18 +12,22 @@ public class Player : MonoBehaviour
     private float jumpPower;
     [SerializeField]
     private int jumpMaxCount;
+    [SerializeField]
+    private float jumpMaxTime;
+    public float JumpTime { get; set; } = 0f;
     public int JumpCount { set; get; }
     public bool IsJumping { set; get; }
 
     public SpriteRenderer spriteRenderer { set; get; }
     public Rigidbody2D rigid2d { set; get; }
     public Collider2D coll { set; get; }
-    public Animator anim {set; get;}
+    public Animator anim { set; get; }
 
     public float MaxSpeed => maxSpeed;
     public float MaxFallingSpeed => maxFallingSpeed;
     public float JumpPower => jumpPower;
     public int JumpMaxCount => jumpMaxCount;
+    public float JumpMaxTime => jumpMaxTime;
 
     // Initialize states
     private void Awake()
