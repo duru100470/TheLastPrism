@@ -13,8 +13,13 @@ public class PlayerJump : IState
 
     public void OperateEnter()
     {
+        player.anim.SetBool("isJumping", true);
+        player.anim.speed = 0.8f;
+
         if (player.IsThereLand() == false || player.JumpCount == 0)
+        {
             return;
+        }
 
         player.rigid2d.AddForce(Vector2.up * player.JumpPower, ForceMode2D.Impulse);
         player.IsJumping = true;
@@ -24,11 +29,16 @@ public class PlayerJump : IState
     {
         player.IsJumping = false;
         player.JumpCount = player.JumpMaxCount;
+
+        player.anim.SetBool("isJumping", false);
+        player.anim.speed = 0.3f;
     }
     public void OperateUpdate()
     {
         if (Input.GetAxisRaw("Horizontal") == 0)
             player.rigid2d.velocity = new Vector2(0, player.rigid2d.velocity.y);
+
+        player.anim.SetFloat("ySpeed", player.rigid2d.velocity.y);
     }
     public void OperateFixedUpdate()
     {

@@ -13,10 +13,14 @@ public class PlayerRun : IState
 
     public void OperateEnter()
     {
+        player.anim.SetBool("isRunning", true);
+        player.anim.speed = 0.8f;
     }
 
     public void OperateExit()
     {
+        player.anim.SetBool("isRunning", false);
+        player.anim.speed = 0.3f;
     }
 
     public void OperateUpdate()

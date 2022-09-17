@@ -17,7 +17,6 @@ public class PlayerIdle : IState
 
     public void OperateExit()
     {
-
     }
     public void OperateUpdate()
     {

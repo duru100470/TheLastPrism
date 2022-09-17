@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public SpriteRenderer spriteRenderer { set; get; }
     public Rigidbody2D rigid2d { set; get; }
     public Collider2D coll { set; get; }
+    public Animator anim {set; get;}
 
     public float MaxSpeed => maxSpeed;
     public float MaxFallingSpeed => maxFallingSpeed;
@@ -25,18 +26,27 @@ public class Player : MonoBehaviour
     public int JumpMaxCount => jumpMaxCount;
 
     // Initialize states
-    private void Start()
+    private void Awake()
     {
         stateMachine = new StateMachine(new PlayerIdle(this));
 
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigid2d = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
+        anim = GetComponent<Animator>();
+
+        anim.speed = 0.3f;
     }
 
     private void Update()
     {
         stateMachine.DoOperateUpdate();
+
+        // Limit Player's Falling Speed
+        if (rigid2d.velocity.y < (-1) * maxFallingSpeed)
+        {
+            rigid2d.velocity = new Vector2(rigid2d.velocity.x, (-1) * maxFallingSpeed);
+        }
     }
 
     private void FixedUpdate()
@@ -46,6 +56,12 @@ public class Player : MonoBehaviour
 
     public void HorizontalMove(float h)
     {
+        // Flip Sprite
+        if (Input.GetButton("Horizontal"))
+        {
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+        }
+
         // Check Side
         RaycastHit2D raycastHit2DRight = Physics2D.Raycast(rigid2d.position, Vector3.right, 0.35f, LayerMask.GetMask("Ground"));
         RaycastHit2D raycastHit2DLeft = Physics2D.Raycast(rigid2d.position, Vector3.left, 0.35f, LayerMask.GetMask("Ground"));
