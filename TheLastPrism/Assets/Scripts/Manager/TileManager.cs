@@ -11,6 +11,9 @@ public class TileManager : MonoBehaviour
     public int worldYSize { get; set; }
     public bool IsGenerating { get; set; } = true;
 
+    [SerializeField]
+    private List<GameObject> tilePrefabList;
+
     [Header("Debug")]
     [SerializeField]
     private GameObject tile;
@@ -42,7 +45,7 @@ public class TileManager : MonoBehaviour
             Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Coordinate coor = new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
             if (TileArray[coor.X, coor.Y] == null)
-                PlaceTile(coor);
+                PlaceTile(coor, TileType.Debug);
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -54,9 +57,9 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    public void PlaceTile(Coordinate coor)
+    public void PlaceTile(Coordinate coor, TileType tileType)
     {
-        GameObject newTile = Instantiate(tile);
+        GameObject newTile = Instantiate(tilePrefabList[(int)tileType]);
         newTile.transform.parent = tileParent.transform;
         newTile.transform.position = new Vector2(coor.X + 0.5f, coor.Y + 0.5f);
 
@@ -64,7 +67,6 @@ public class TileManager : MonoBehaviour
         var tmp = newTile.GetComponent<Tile>();
         TileArray[coor.X, coor.Y] = tmp;
         tmp.Pos = coor;
-        tmp.TileType = TileType.Debug;
 
         // Notify Tile has changed        
         EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);

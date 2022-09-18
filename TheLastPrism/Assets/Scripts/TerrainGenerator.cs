@@ -62,6 +62,7 @@ public class TerrainGenerator : MonoBehaviour
         {
             float height = Mathf.PerlinNoise((x + seed) * terrainFreq, seed * terrainFreq) * heightMultiplier + heightAddition;
 
+            // Generate sea terrain
             if (x >= 0 && x < seaWidth)
             {
                 height -= leftSeaDepth;
@@ -85,7 +86,13 @@ public class TerrainGenerator : MonoBehaviour
             {
                 if (noiseTexture.GetPixel(x, y).r > 0.2f)
                 {
-                    TileManager.Instance.PlaceTile(new Coordinate(x, y));
+                    float dirtHeight = 
+                        Mathf.PerlinNoise((x + seed + 5000) * terrainFreq, seed * terrainFreq) * 10 + 20;
+                    
+                    if (y > height - dirtHeight)
+                        TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.Dirt);
+                    else
+                        TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.Stone);
                 }
             }
         }
