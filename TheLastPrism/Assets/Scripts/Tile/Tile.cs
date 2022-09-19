@@ -8,6 +8,8 @@ public class Tile : MonoBehaviour
     private int health;
     [SerializeField]
     private TileType tileType;
+    [SerializeField]
+    private List<GameObject> dropItemList;
     public Coordinate Pos { get; set; }
     public TileType TileType => tileType;
 }

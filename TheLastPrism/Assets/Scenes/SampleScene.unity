@@ -212,7 +212,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 4.5
+  orthographic size: 4.21875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -596,7 +596,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.55, y: 0.9}
+  m_Size: {x: 0.55, y: 0.85}
   m_Direction: 0
 --- !u!1 &1319368829
 GameObject:
@@ -635,10 +635,25 @@ MonoBehaviour:
   rightSeaDepth: 40
   heightMultiplier: 20
   heightAddition: 100
+  coalFreq: 0.08
+  coalSize: 0.7
+  coalSpread: {fileID: 0}
+  copperFreq: 0.08
+  copperSize: 0.8
+  copperSpread: {fileID: 0}
+  ironFreq: 0.09
+  ironSize: 0.8
+  ironSpread: {fileID: 0}
+  goldFreq: 0.09
+  goldSize: 0.8
+  goldSpread: {fileID: 0}
+  luxShardFreq: 0.3
+  luxShardSize: 0.85
+  luxShardSpread: {fileID: 0}
   caveFreq: 0.05
   terrainFreq: 0.04
   seed: 0
-  noiseTexture: {fileID: 0}
+  caveNoiseTexture: {fileID: 0}
 --- !u!4 &1319368831
 Transform:
   m_ObjectHideFlags: 0
@@ -683,6 +698,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811ed6708b34e1e449906c0a9e4adfc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tilePrefabList:
+  - {fileID: 929461458784902681, guid: 12a503d2d9fa77443b099e23bf584937, type: 3}
+  - {fileID: 929461458784902681, guid: 8382d5dcb73e6e94dab6033a0d92e92c, type: 3}
+  - {fileID: 929461458784902681, guid: 100195e331b757d48b3de2708e32c2bd, type: 3}
+  - {fileID: 929461458784902681, guid: cd0f571615b46fe488948fb0142861db, type: 3}
+  - {fileID: 929461458784902681, guid: 32a40706a7da6b149b49ac209b07c868, type: 3}
+  - {fileID: 929461458784902681, guid: 25f3bc8a9b2b5b549827e7366380fe54, type: 3}
+  - {fileID: 929461458784902681, guid: d201fb1c620d1f94db6da45d14553928, type: 3}
+  - {fileID: 929461458784902681, guid: edfade168660f5b4bb5b6f9fa011b4f8, type: 3}
   tile: {fileID: 929461458784902681, guid: edfade168660f5b4bb5b6f9fa011b4f8, type: 3}
   isDebugMod: 1
 --- !u!4 &1413166238

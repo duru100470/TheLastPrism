@@ -21,6 +21,32 @@ public class TerrainGenerator : MonoBehaviour
     private int heightMultiplier;
     [SerializeField]
     private int heightAddition;
+
+    [Header("Ores Setting")]
+    [SerializeField]
+    private float coalFreq;
+    [SerializeField]
+    private float coalSize;
+    [SerializeField]
+    private Texture2D coalSpread;
+    [SerializeField]
+    private float copperFreq, copperSize;
+    [SerializeField]
+    private Texture2D copperSpread;
+    [SerializeField]
+    private float ironFreq, ironSize;
+    [SerializeField]
+    private Texture2D ironSpread;
+    [SerializeField]
+    private float goldFreq, goldSize;
+    [SerializeField]
+    private Texture2D goldSpread;
+    [SerializeField]
+    private float luxShardFreq, luxShardSize;
+    [SerializeField]
+    private Texture2D luxShardSpread;
+
+    [Header("Noise Setting")]
     [SerializeField]
     private float caveFreq;
     [SerializeField]
@@ -28,7 +54,7 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField]
     private float seed;
     [SerializeField]
-    private Texture2D noiseTexture;
+    private Texture2D caveNoiseTexture;
 
     private void Start()
     {
@@ -43,7 +69,12 @@ public class TerrainGenerator : MonoBehaviour
         TileManager.Instance.worldYSize = worldYSize;
 
         // Generate map
-        GenerateNoiseTexture();
+        caveNoiseTexture = GenerateNoiseTexture(seed, caveFreq);
+        coalSpread = GenerateNoiseTexture(seed + 1000, coalFreq);
+        copperSpread = GenerateNoiseTexture(seed + 2000, copperFreq);
+        ironSpread = GenerateNoiseTexture(seed + 3000, ironFreq);
+        goldSpread = GenerateNoiseTexture(seed + 4000, goldFreq);
+        luxShardSpread = GenerateNoiseTexture(seed + 5000, luxShardFreq);
         GenerateTerrain();
 
         // Update Entire Ruletiles
@@ -84,7 +115,7 @@ public class TerrainGenerator : MonoBehaviour
 
             for (int y = 0; y < height; y++)
             {
-                if (noiseTexture.GetPixel(x, y).r > 0.2f)
+                if (caveNoiseTexture.GetPixel(x, y).r > 0.2f)
                 {
                     float dirtHeight = 
                         Mathf.PerlinNoise((x + seed + 5000) * terrainFreq, seed * terrainFreq) * 10 + 20;
@@ -92,25 +123,39 @@ public class TerrainGenerator : MonoBehaviour
                     if (y > height - dirtHeight)
                         TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.Dirt);
                     else
-                        TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.Stone);
+                    {
+                        if (luxShardSpread.GetPixel(x, y).r > luxShardSize)
+                            TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.LuxShardOre);
+                        else if (goldSpread.GetPixel(x, y).r > goldSize)
+                            TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.GoldOre);
+                        else if (ironSpread.GetPixel(x, y).r > ironSize)
+                            TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.IronOre);
+                        else if (copperSpread.GetPixel(x, y).r > copperSize)
+                            TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.CopperOre);
+                        else if (coalSpread.GetPixel(x, y).r > coalSize)
+                            TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.CoalOre);
+                        else
+                            TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.Stone);
+                    }
                 }
             }
         }
     }
 
-    private void GenerateNoiseTexture()
+    private Texture2D GenerateNoiseTexture(float seed, float freq)
     {
-        noiseTexture = new Texture2D(worldXSize, worldYSize);
+        Texture2D noise = new Texture2D(worldXSize, worldYSize);
 
-        for (int x = 0; x < noiseTexture.width; x++)
+        for (int x = 0; x < noise.width; x++)
         {
-            for (int y = 0; y < noiseTexture.height; y++)
+            for (int y = 0; y < noise.height; y++)
             {
-                float v = Mathf.PerlinNoise((x + seed) * caveFreq, (y + seed) * caveFreq);
-                noiseTexture.SetPixel(x, y, new Color(v, v, v));
+                float v = Mathf.PerlinNoise((x + seed) * freq, (y + seed) * freq);
+                noise.SetPixel(x, y, new Color(v, v, v));
             }
         }
 
-        noiseTexture.Apply();
+        noise.Apply();
+        return noise;
     }
 }

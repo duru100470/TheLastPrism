@@ -6,6 +6,11 @@ public enum TileType
 {
     Dirt,
     Stone,
+    CoalOre,
+    CopperOre,
+    IronOre,
+    GoldOre,
+    LuxShardOre,
     Debug
 }
 
