@@ -14,7 +14,7 @@ public class TempGravityRuleTile : MonoBehaviour
     }
 
     private void Update() {
-        // Limit Player's Falling Speed
+        // Limit Tile's Falling Speed
         if (rigid2d.velocity.y < (-1) * maxFallingSpeed)
         {
             rigid2d.velocity = new Vector2(rigid2d.velocity.x, (-1) * maxFallingSpeed);

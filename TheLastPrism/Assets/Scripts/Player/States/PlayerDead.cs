@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerDead : IState
 {
-    private Player player;
+    private PlayerController playerController;
 
-    public PlayerDead(Player player)
+    public PlayerDead(PlayerController playerController)
     {
-        this.player = player;
+        this.playerController = playerController;
     }
 
     public void OperateEnter()

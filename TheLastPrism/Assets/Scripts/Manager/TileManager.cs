@@ -40,25 +40,25 @@ public class TileManager : MonoBehaviour
     {
         if (!isDebugMod) return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Coordinate coor = new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            if (TileArray[coor.X, coor.Y] == null)
-                PlaceTile(coor, TileType.Sand);
+            PlaceTile(coor, TileType.Sand);
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButton(1))
         {
             Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Coordinate coor = new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            if (TileArray[coor.X, coor.Y] != null)
-                DestroyTile(coor);
+            DestroyTile(coor);
         }
     }
 
     public void PlaceTile(Coordinate coor, TileType tileType, int health = 0)
     {
+        if (TileArray[coor.X, coor.Y] != null) return;
+
         GameObject newTile = Instantiate(tilePrefabList[(int)tileType]);
         newTile.transform.parent = tileParent.transform;
         newTile.transform.position = new Vector2(coor.X + 0.5f, coor.Y + 0.5f);
@@ -81,6 +81,8 @@ public class TileManager : MonoBehaviour
 
     public void DestroyTile(Coordinate coor)
     {
+        if (TileArray[coor.X, coor.Y] == null) return;
+
         Destroy(TileArray[coor.X, coor.Y].gameObject);
         TileArray[coor.X, coor.Y] = null;
 

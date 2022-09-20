@@ -4,70 +4,72 @@ using UnityEngine;
 
 public class PlayerJump : IState
 {
-    private Player player;
+    private PlayerController playerController;
 
-    public PlayerJump(Player player)
+    public PlayerJump(PlayerController playerController)
     {
-        this.player = player;
+        this.playerController = playerController;
     }
 
     public void OperateEnter()
     {
-        player.anim.SetBool("isJumping", true);
-        player.anim.speed = 0.7f;
+        playerController.anim.SetBool("isJumping", true);
+        playerController.anim.speed = 0.7f;
 
-        if (player.IsThereLand() == false || player.JumpCount == 0)
+        if (playerController.IsThereLand() == false || playerController.JumpCount == 0)
         {
             return;
         }
 
-        player.rigid2d.velocity = new Vector2(player.rigid2d.velocity.x, 0);
-        player.IsCoyoteTimeEnable = false;
-        player.StartCoroutine(ControlJump());
+        playerController.rigid2d.velocity = new Vector2(playerController.rigid2d.velocity.x, 0);
+        playerController.IsCoyoteTimeEnable = false;
+        playerController.StartCoroutine(ControlJump());
 
-        player.IsJumping = true;
-        player.JumpCount--;
+        playerController.IsJumping = true;
+        playerController.JumpCount--;
     }
     public void OperateExit()
     {
-        player.IsJumping = false;
-        player.JumpCount = player.JumpMaxCount;
-        player.IsCoyoteTimeEnable = true;
+        playerController.IsJumping = false;
+        playerController.JumpCount = playerController.JumpMaxCount;
+        playerController.IsCoyoteTimeEnable = true;
 
-        player.anim.SetBool("isJumping", false);
-        player.anim.speed = 0.3f;
+        // Check Falling Damage
+
+        playerController.anim.SetBool("isJumping", false);
+        playerController.anim.speed = 0.3f;
     }
     public void OperateUpdate()
     {
         if (Input.GetAxisRaw("Horizontal") == 0)
-            player.rigid2d.velocity = new Vector2(0, player.rigid2d.velocity.y);
+            playerController.rigid2d.velocity = new Vector2(0, playerController.rigid2d.velocity.y);
 
-        player.anim.SetFloat("ySpeed", player.rigid2d.velocity.y);
+        playerController.anim.SetFloat("ySpeed", playerController.rigid2d.velocity.y);
     }
     public void OperateFixedUpdate()
     {
         float h = Input.GetAxisRaw("Horizontal");
 
-        player.HorizontalMove(h);
+        playerController.HorizontalMove(h);
 
         // Transition
-        if (player.rigid2d.velocity.y < 0)
+        if (playerController.rigid2d.velocity.y < 0)
         {
-            if (player.IsThereLand())
+            if (playerController.IsThereLand())
             {
                 if (h == 0)
-                    player.stateMachine.SetState(new PlayerIdle(player));
+                    playerController.stateMachine.SetState(new PlayerIdle(playerController));
                 else
-                    player.stateMachine.SetState(new PlayerRun(player));
+                    playerController.stateMachine.SetState(new PlayerRun(playerController));
             }
         }
     }
 
     private IEnumerator ControlJump()
     {
-        for (player.JumpTime = 0; player.JumpTime <= player.JumpMaxTime; player.JumpTime += 0.05f)
+        for (playerController.JumpTime = 0; playerController.JumpTime <= playerController.JumpMaxTime; playerController.JumpTime += 0.05f)
         {
-            player.rigid2d.AddForce(Vector2.up * player.JumpPower * (player.JumpMaxTime - player.JumpTime), ForceMode2D.Impulse);
+            playerController.rigid2d.AddForce(Vector2.up * playerController.JumpPower * (playerController.JumpMaxTime - playerController.JumpTime), ForceMode2D.Impulse);
             
             if (Input.GetKey(KeyCode.Space))
                 yield return new WaitForSeconds(0.05f);

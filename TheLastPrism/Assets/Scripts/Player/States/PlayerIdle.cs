@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerIdle : IState
 {
-    private Player player;
+    private PlayerController playerController;
 
-    public PlayerIdle(Player player)
+    public PlayerIdle(PlayerController playerController)
     {
-        this.player = player;
+        this.playerController = playerController;
     }
 
     public void OperateEnter()
@@ -23,21 +23,21 @@ public class PlayerIdle : IState
         // Transition
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
-            player.stateMachine.SetState(new PlayerRun(player));
+            playerController.stateMachine.SetState(new PlayerRun(playerController));
         }
         else
         {
-            player.rigid2d.velocity = new Vector2(0, player.rigid2d.velocity.y);
+            playerController.rigid2d.velocity = new Vector2(0, playerController.rigid2d.velocity.y);
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            player.stateMachine.SetState(new PlayerJump(player));
+            playerController.stateMachine.SetState(new PlayerJump(playerController));
         }
 
-        if (player.IsThereLand() == false)
+        if (playerController.IsThereLand() == false)
         {
-            player.stateMachine.SetState(new PlayerJump(player));
+            playerController.stateMachine.SetState(new PlayerJump(playerController));
         }
     }
     public void OperateFixedUpdate()

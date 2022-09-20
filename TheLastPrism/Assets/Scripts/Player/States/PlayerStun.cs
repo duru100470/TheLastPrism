@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerStun : IState
 {
-    private Player player;
+    private PlayerController playerController;
 
-    public PlayerStun(Player player)
+    public PlayerStun(PlayerController playerController)
     {
-        this.player = player;
+        this.playerController = playerController;
     }
 
     public void OperateEnter()

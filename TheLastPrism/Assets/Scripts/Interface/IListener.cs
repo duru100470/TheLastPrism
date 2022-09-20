@@ -3,6 +3,8 @@ using UnityEngine;
 public enum EVENT_TYPE
 {
     TileChange,
+    PlayerHPChanged,
+    PlayerDead
 }
 
 public interface IListener
