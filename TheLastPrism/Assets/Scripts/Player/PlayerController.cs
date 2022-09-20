@@ -63,18 +63,6 @@ public class PlayerController : MonoBehaviour
         stateMachine.DoOperateFixedUpdate();
     }
 
-    public void GetStunned(float duration)
-    {
-        StartCoroutine(Stun(duration));
-    }
-
-    private IEnumerator Stun(float duration)
-    {
-        stateMachine.SetState(new PlayerStun(this));
-        yield return new WaitForSeconds(duration);
-        stateMachine.SetState(new PlayerIdle(this));
-    }
-
     public void HorizontalMove(float h)
     {
         // Flip Sprite

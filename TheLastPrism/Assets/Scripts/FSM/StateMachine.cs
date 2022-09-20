@@ -21,7 +21,6 @@ public class StateMachine
         CurruentState.OperateExit();
 
         CurruentState = state;
-        Debug.Log(CurruentState);
 
         CurruentState.OperateEnter();
     }

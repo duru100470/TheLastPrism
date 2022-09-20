@@ -56,9 +56,9 @@ public class PlayerJump : IState
             if (playerController.IsThereLand())
             {
                 // Check Falling Damage
-                if (playerController.rigid2d.velocity.y < -10)
+                if (playerController.rigid2d.velocity.y < -15)
                 {
-                    playerController.player.GetDamage(10, false);
+                    playerController.player.GetDamage(10, 1f, 0.5f, false);
                 }
                 else if (h == 0)
                     playerController.stateMachine.SetState(new PlayerIdle(playerController));
