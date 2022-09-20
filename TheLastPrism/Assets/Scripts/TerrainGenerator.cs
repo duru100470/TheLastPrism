@@ -24,27 +24,7 @@ public class TerrainGenerator : MonoBehaviour
 
     [Header("Ores Setting")]
     [SerializeField]
-    private float coalFreq;
-    [SerializeField]
-    private float coalSize;
-    [SerializeField]
-    private Texture2D coalSpread;
-    [SerializeField]
-    private float copperFreq, copperSize;
-    [SerializeField]
-    private Texture2D copperSpread;
-    [SerializeField]
-    private float ironFreq, ironSize;
-    [SerializeField]
-    private Texture2D ironSpread;
-    [SerializeField]
-    private float goldFreq, goldSize;
-    [SerializeField]
-    private Texture2D goldSpread;
-    [SerializeField]
-    private float luxShardFreq, luxShardSize;
-    [SerializeField]
-    private Texture2D luxShardSpread;
+    private TileAtlas tileAtlas;
 
     [Header("Noise Setting")]
     [SerializeField]
@@ -70,11 +50,11 @@ public class TerrainGenerator : MonoBehaviour
 
         // Generate map
         caveNoiseTexture = GenerateNoiseTexture(seed, caveFreq);
-        coalSpread = GenerateNoiseTexture(seed + 1000, coalFreq);
-        copperSpread = GenerateNoiseTexture(seed + 2000, copperFreq);
-        ironSpread = GenerateNoiseTexture(seed + 3000, ironFreq);
-        goldSpread = GenerateNoiseTexture(seed + 4000, goldFreq);
-        luxShardSpread = GenerateNoiseTexture(seed + 5000, luxShardFreq);
+        tileAtlas.oreDatas[0].spread = GenerateNoiseTexture(seed + 1000, tileAtlas.oreDatas[0].freq);
+        tileAtlas.oreDatas[1].spread = GenerateNoiseTexture(seed + 2000, tileAtlas.oreDatas[1].freq);
+        tileAtlas.oreDatas[2].spread = GenerateNoiseTexture(seed + 3000, tileAtlas.oreDatas[2].freq);
+        tileAtlas.oreDatas[3].spread = GenerateNoiseTexture(seed + 4000, tileAtlas.oreDatas[3].freq);
+        tileAtlas.oreDatas[4].spread = GenerateNoiseTexture(seed + 5000, tileAtlas.oreDatas[4].freq);
         GenerateTerrain();
 
         // Update Entire Ruletiles
@@ -124,15 +104,15 @@ public class TerrainGenerator : MonoBehaviour
                         TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.Dirt);
                     else
                     {
-                        if (luxShardSpread.GetPixel(x, y).r > luxShardSize)
+                        if (tileAtlas.oreDatas[4].spread.GetPixel(x, y).r > tileAtlas.oreDatas[4].size)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.LuxShardOre);
-                        else if (goldSpread.GetPixel(x, y).r > goldSize)
+                        else if (tileAtlas.oreDatas[3].spread.GetPixel(x, y).r > tileAtlas.oreDatas[3].size)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.GoldOre);
-                        else if (ironSpread.GetPixel(x, y).r > ironSize)
+                        else if (tileAtlas.oreDatas[2].spread.GetPixel(x, y).r > tileAtlas.oreDatas[2].size)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.IronOre);
-                        else if (copperSpread.GetPixel(x, y).r > copperSize)
+                        else if (tileAtlas.oreDatas[1].spread.GetPixel(x, y).r > tileAtlas.oreDatas[1].size)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.CopperOre);
-                        else if (coalSpread.GetPixel(x, y).r > coalSize)
+                        else if (tileAtlas.oreDatas[0].spread.GetPixel(x, y).r > tileAtlas.oreDatas[0].size)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.CoalOre);
                         else
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.Stone);
