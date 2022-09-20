@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Iron
   m_EditorClassIdentifier: 
   oreType: 4
-  maxSpawnHeight: 0
+  maxSpawnHeight: 60
   freq: 0.09
   size: 0.8
   spread: {fileID: 0}

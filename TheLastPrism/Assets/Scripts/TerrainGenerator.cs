@@ -98,21 +98,21 @@ public class TerrainGenerator : MonoBehaviour
                 if (caveNoiseTexture.GetPixel(x, y).r > 0.2f)
                 {
                     float dirtHeight = 
-                        Mathf.PerlinNoise((x + seed + 5000) * terrainFreq, seed * terrainFreq) * 10 + 20;
+                        Mathf.PerlinNoise((x + seed + 5000) * terrainFreq, seed * terrainFreq) * 10 + 15;
                     
                     if (y > height - dirtHeight)
                         TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.Dirt);
                     else
                     {
-                        if (tileAtlas.oreDatas[4].spread.GetPixel(x, y).r > tileAtlas.oreDatas[4].size)
+                        if (tileAtlas.oreDatas[4].spread.GetPixel(x, y).r > tileAtlas.oreDatas[4].size && y <= tileAtlas.oreDatas[4].maxSpawnHeight)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.LuxShardOre);
-                        else if (tileAtlas.oreDatas[3].spread.GetPixel(x, y).r > tileAtlas.oreDatas[3].size)
+                        else if (tileAtlas.oreDatas[3].spread.GetPixel(x, y).r > tileAtlas.oreDatas[3].size && y <= tileAtlas.oreDatas[3].maxSpawnHeight)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.GoldOre);
-                        else if (tileAtlas.oreDatas[2].spread.GetPixel(x, y).r > tileAtlas.oreDatas[2].size)
+                        else if (tileAtlas.oreDatas[2].spread.GetPixel(x, y).r > tileAtlas.oreDatas[2].size && y <= tileAtlas.oreDatas[2].maxSpawnHeight)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.IronOre);
-                        else if (tileAtlas.oreDatas[1].spread.GetPixel(x, y).r > tileAtlas.oreDatas[1].size)
+                        else if (tileAtlas.oreDatas[1].spread.GetPixel(x, y).r > tileAtlas.oreDatas[1].size && y <= tileAtlas.oreDatas[1].maxSpawnHeight)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.CopperOre);
-                        else if (tileAtlas.oreDatas[0].spread.GetPixel(x, y).r > tileAtlas.oreDatas[0].size)
+                        else if (tileAtlas.oreDatas[0].spread.GetPixel(x, y).r > tileAtlas.oreDatas[0].size && y <= tileAtlas.oreDatas[0].maxSpawnHeight)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.CoalOre);
                         else
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TileType.Stone);

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gold
   m_EditorClassIdentifier: 
   oreType: 5
-  maxSpawnHeight: 0
+  maxSpawnHeight: 20
   freq: 0.09
   size: 0.8
   spread: {fileID: 0}

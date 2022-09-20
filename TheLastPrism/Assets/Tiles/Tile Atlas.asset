@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a2958640a27914aaa897531692c835, type: 3}
   m_Name: Tile Atlas
   m_EditorClassIdentifier: 
-  oreDatas: []
+  oreDatas:
+  - {fileID: 11400000, guid: 5763ffd10af578840b190fba03c10f39, type: 2}
+  - {fileID: 11400000, guid: 33108c7398fef614fa0bc2e6594c0623, type: 2}
+  - {fileID: 11400000, guid: dd187a78894aeb74e939d129248b4e9f, type: 2}
+  - {fileID: 11400000, guid: 97df3468336707b42b24c27c8a674233, type: 2}
+  - {fileID: 11400000, guid: 133fe36265fed15468858f085f2178ff, type: 2}

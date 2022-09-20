@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LuxShard
   m_EditorClassIdentifier: 
   oreType: 6
-  maxSpawnHeight: 0
+  maxSpawnHeight: 200
   freq: 0.3
   size: 0.85
   spread: {fileID: 0}

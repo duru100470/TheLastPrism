@@ -45,7 +45,7 @@ public class TileManager : MonoBehaviour
             Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Coordinate coor = new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
             if (TileArray[coor.X, coor.Y] == null)
-                PlaceTile(coor, TileType.Debug);
+                PlaceTile(coor, TileType.Sand);
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -57,7 +57,7 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    public void PlaceTile(Coordinate coor, TileType tileType)
+    public void PlaceTile(Coordinate coor, TileType tileType, int health = 0)
     {
         GameObject newTile = Instantiate(tilePrefabList[(int)tileType]);
         newTile.transform.parent = tileParent.transform;
@@ -67,6 +67,8 @@ public class TileManager : MonoBehaviour
         var tmp = newTile.GetComponent<Tile>();
         TileArray[coor.X, coor.Y] = tmp;
         tmp.Pos = coor;
+        if (health > 0)
+            tmp.Health = health;
 
         // Notify Tile has changed        
         EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);

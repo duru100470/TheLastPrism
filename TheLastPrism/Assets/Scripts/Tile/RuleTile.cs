@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class RuleTile : Tile
 {
+    [Header("RuleTile")]
     [SerializeField]
     private Sprite[] ruleTileSprites;
-    private SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
     private void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     
-    public void UpdateRuleTile()
+    public virtual void UpdateRuleTile()
     {
         // Left Up
         if (

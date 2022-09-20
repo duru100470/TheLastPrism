@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: 
   oreType: 2
-  maxSpawnHeight: 100
+  maxSpawnHeight: 200
   freq: 0.08
   size: 0.7
   spread: {fileID: 0}
