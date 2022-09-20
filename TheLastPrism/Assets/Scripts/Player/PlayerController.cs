@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rigid2d { get; set; }
     public Collider2D coll { get; set; }
     public Animator anim { get; set; }
+    public Player player { get; set; }
 
     public float MaxSpeed => maxSpeed;
     public float MaxFallingSpeed => maxFallingSpeed;
@@ -41,6 +42,7 @@ public class PlayerController : MonoBehaviour
         rigid2d = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
+        player = GetComponent<Player>();
 
         anim.speed = 0.3f;
     }
@@ -61,9 +63,16 @@ public class PlayerController : MonoBehaviour
         stateMachine.DoOperateFixedUpdate();
     }
 
-    public void GetStunned()
+    public void GetStunned(float duration)
+    {
+        StartCoroutine(Stun(duration));
+    }
+
+    private IEnumerator Stun(float duration)
     {
         stateMachine.SetState(new PlayerStun(this));
+        yield return new WaitForSeconds(duration);
+        stateMachine.SetState(new PlayerIdle(this));
     }
 
     public void HorizontalMove(float h)

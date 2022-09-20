@@ -17,6 +17,8 @@ public class Player : MonoBehaviour, IDamageable
 
     public void GetDamage(int amount, bool ignoreInvTime)
     {
+        health -= amount;
+        playerController.GetStunned(1f);
         EventManager.Instance.PostNotification(EVENT_TYPE.PlayerHPChanged, this, amount);
     }
 }

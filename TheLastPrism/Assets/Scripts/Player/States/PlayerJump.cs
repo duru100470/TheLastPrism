@@ -34,8 +34,6 @@ public class PlayerJump : IState
         playerController.JumpCount = playerController.JumpMaxCount;
         playerController.IsCoyoteTimeEnable = true;
 
-        // Check Falling Damage
-
         playerController.anim.SetBool("isJumping", false);
         playerController.anim.speed = 0.3f;
     }
@@ -57,7 +55,12 @@ public class PlayerJump : IState
         {
             if (playerController.IsThereLand())
             {
-                if (h == 0)
+                // Check Falling Damage
+                if (playerController.rigid2d.velocity.y < -10)
+                {
+                    playerController.player.GetDamage(10, false);
+                }
+                else if (h == 0)
                     playerController.stateMachine.SetState(new PlayerIdle(playerController));
                 else
                     playerController.stateMachine.SetState(new PlayerRun(playerController));
