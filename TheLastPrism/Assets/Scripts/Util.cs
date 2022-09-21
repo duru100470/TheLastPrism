@@ -2,7 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileType
+public enum TILE_TYPE
+{
+    Dirt,
+    Stone,
+    Sand,
+    CoalOre,
+    CopperOre,
+    IronOre,
+    GoldOre,
+    LuxShardOre,
+    Debug
+}
+
+public enum ITEM_TYPE
 {
     Dirt,
     Stone,

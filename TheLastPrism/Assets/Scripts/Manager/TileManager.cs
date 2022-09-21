@@ -44,7 +44,7 @@ public class TileManager : MonoBehaviour
         {
             Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Coordinate coor = new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            PlaceTile(coor, TileType.Sand);
+            PlaceTile(coor, TILE_TYPE.Sand);
         }
 
         if (Input.GetMouseButton(1))
@@ -55,7 +55,7 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    public void PlaceTile(Coordinate coor, TileType tileType, int health = 0)
+    public void PlaceTile(Coordinate coor, TILE_TYPE tileType, int health = 0)
     {
         if (TileArray[coor.X, coor.Y] != null) return;
 
