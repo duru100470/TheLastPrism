@@ -14,20 +14,43 @@ public class Inventory : MonoBehaviour
         slots = go_SlotsParent.GetComponentsInChildren<Slot>();
     }
 
-    public void AcquireItem(ref Item _item)
+    public bool AcquireItem(ref Item _item)
     {
+        bool isSuccessful = false;
+        
         foreach (var slot in slots)
         {
             if (slot.item == null)
             {
-                slot.AddItem(_item);
-                _item.Amount = 0;
+                slot.AddItem(ref _item);
+                isSuccessful = true;
             }
-            if (slot.item.ItemType == _item.ItemType && !slot.IsSlotFull())
+            if (slot.item.ItemInfo.itemType == _item.ItemInfo.itemType && !slot.IsSlotFull())
             {
-                slot.AddItem(_item);
+                slot.AddItem(ref _item);
+                isSuccessful = true;
             }
         }
+
+        return isSuccessful;
+    }
+
+    public Item GetItemInfo(int _slot)
+    {
+        return slots[_slot].item;
+    }
+
+    public bool FindItem(ITEM_TYPE itemType, int amount)
+    {
+        int total = 0;
+
+        foreach (var slot in slots)
+        {
+            if (slot.item.ItemInfo.itemType == itemType)
+                total += slot.item.Amount;
+        }
+
+        return total >= amount;
     }
 
     public bool RemoveItem(int _slot)
@@ -39,6 +62,19 @@ public class Inventory : MonoBehaviour
             slots[_slot].ClearSlot();
             isSuccessful = true;
         }
+
+        return isSuccessful;
+    }
+    
+    public bool RemoveItem(ITEM_TYPE itemType, int amount)
+    {
+        bool isSuccessful = false;
+
+        // foreach (var slot in slots)
+        // {
+            // if (slot.item.ItemType == itemType)
+                // total += slot.item.Amount;
+        // }
 
         return isSuccessful;
     }

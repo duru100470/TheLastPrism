@@ -8,6 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => _instance;
     public Player CurPlayer { get; private set; }
 
+    [SerializeField]
+    private GameObject itemPrefab;
+
+    public GameObject ItemPrefab => itemPrefab;
+
     private void Awake()
     {
         if (_instance == null)

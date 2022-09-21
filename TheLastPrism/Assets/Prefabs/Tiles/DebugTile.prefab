@@ -101,6 +101,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   tileType: 2
+  dropItemList:
+  - itemSprite: {fileID: 0}
+    itemType: 0
+    amount: 0
+    maxStack: 0
   ruleTileSprites:
   - {fileID: -1875872682, guid: 60f65df3689d8664f871a00329b0ba95, type: 3}
   - {fileID: -669245410, guid: 60f65df3689d8664f871a00329b0ba95, type: 3}

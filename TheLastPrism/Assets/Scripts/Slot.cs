@@ -32,21 +32,23 @@ public class Slot : MonoBehaviour
             textCount.alpha = 1f;
     }
 
-    public void AddItem(Item _item)
+    public void AddItem(ref Item _item)
     {
-        item = new Item(_item);
-        image.sprite = item.ItemSprite;
+        if (item == null)
+        {
+            item = new Item(_item);
+            _item.Amount = 0;
+        }
+        // item.ItemType == _item.ItemType
+        else
+        {
+            int tmp = item.ItemInfo.maxStack - item.Amount;
+            item.Amount += _item.Amount;
+            _item.Amount -= tmp;
+        }
+
         SetColor(1f);
         SetCount(item.Amount);
-    }
-
-    public void SetSlotCount(int _count)
-    {
-        item.Amount += _count;
-        SetCount(item.Amount);
-
-        if (item.Amount <= 0)
-            ClearSlot();
     }
 
     public void ClearSlot()
@@ -58,6 +60,6 @@ public class Slot : MonoBehaviour
 
     public bool IsSlotFull()
     {
-        return item.Amount == item.MaxStack;
+        return item.Amount == item.ItemInfo.maxStack;
     }
 }

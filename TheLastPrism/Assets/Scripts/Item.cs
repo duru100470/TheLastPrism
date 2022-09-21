@@ -1,32 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+[Serializable]
+public class Item
 {
-    [SerializeField] 
-    private Sprite itemSprite;
     [SerializeField]
-    private ITEM_TYPE itemType;
+    private ItemInfo itemInfo;
     [SerializeField]
     private int amount;
-    [SerializeField]
-    private int maxStack;
     
-    public Sprite ItemSprite => itemSprite;
-    public ITEM_TYPE ItemType => itemType;
+    public ItemInfo ItemInfo => itemInfo;
     public int Amount
     {
         get { return amount; }
-        set { amount = Mathf.Clamp(value, 0, maxStack); }
+        set { amount = Mathf.Clamp(value, 0, itemInfo.maxStack); }
     }
-    public int MaxStack => maxStack;
 
     public Item (Item prevItem)
     {
-        this.itemSprite = prevItem.ItemSprite;
-        this.itemType = prevItem.ItemType;
+        this.itemInfo = prevItem.ItemInfo;
         this.amount = prevItem.Amount;
-        this.maxStack = prevItem.MaxStack;
     }
 }
