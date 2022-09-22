@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
     private GameObject go_SlotsParent;
 
     private Slot[] slots;
+    public int SelectedSlot {get; set;} = 0;
 
     private void Start()
     {

@@ -92,7 +92,10 @@ public class TileManager : MonoBehaviour
 
                 // CreateItemCounter(itemPrefab);
 
-                itemPrefab.GetComponent<ItemController>().Item = new Item(item);
+                ItemController ic = itemPrefab.GetComponent<ItemController>();
+                ic.item = new Item(item);
+                ic.UpdateSprite();
+                ic.SetAcquirable(0f);
             }
         }
 
