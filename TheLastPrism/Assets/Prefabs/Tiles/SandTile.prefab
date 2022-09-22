@@ -149,8 +149,7 @@ MonoBehaviour:
   health: 5
   tileType: 2
   dropItemList:
-  - itemInfo: {fileID: 11400000, guid: 16345a20b4d80ab448ff85e6a627979b, type: 2}
-    amount: 1
+  - rid: 2535915216700964885
   ruleTileSprites:
   - {fileID: 600738996, guid: 1d6fc4c85a9467e4e837bf112e7cd450, type: 3}
   - {fileID: -1701906842, guid: 1d6fc4c85a9467e4e837bf112e7cd450, type: 3}
@@ -200,3 +199,11 @@ MonoBehaviour:
   - {fileID: 1891603245, guid: 1d6fc4c85a9467e4e837bf112e7cd450, type: 3}
   - {fileID: -966453693, guid: 1d6fc4c85a9467e4e837bf112e7cd450, type: 3}
   tempTile: {fileID: 763809945305961130, guid: edf40d23e03abcd44b18167de2fd04f7, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 2535915216700964885
+      type: {class: Item, ns: , asm: Assembly-CSharp}
+      data:
+        itemInfo: {fileID: 11400000, guid: 16345a20b4d80ab448ff85e6a627979b, type: 2}
+        amount: 1

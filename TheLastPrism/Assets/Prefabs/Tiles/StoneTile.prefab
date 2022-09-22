@@ -102,8 +102,7 @@ MonoBehaviour:
   health: 20
   tileType: 1
   dropItemList:
-  - itemInfo: {fileID: 11400000, guid: c5e2810c85a01114fbc4bf7ff896cc25, type: 2}
-    amount: 1
+  - rid: 2535915216700964887
   ruleTileSprites:
   - {fileID: 467278300, guid: 1a26938b3de9c54448001f7385ee5698, type: 3}
   - {fileID: -1392290799, guid: 1a26938b3de9c54448001f7385ee5698, type: 3}
@@ -152,6 +151,14 @@ MonoBehaviour:
   - {fileID: 1533847676, guid: 1a26938b3de9c54448001f7385ee5698, type: 3}
   - {fileID: 1680727165, guid: 1a26938b3de9c54448001f7385ee5698, type: 3}
   - {fileID: -2022609138, guid: 1a26938b3de9c54448001f7385ee5698, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 2535915216700964887
+      type: {class: Item, ns: , asm: Assembly-CSharp}
+      data:
+        itemInfo: {fileID: 11400000, guid: c5e2810c85a01114fbc4bf7ff896cc25, type: 2}
+        amount: 1
 --- !u!61 &4270016612085678337
 BoxCollider2D:
   m_ObjectHideFlags: 0

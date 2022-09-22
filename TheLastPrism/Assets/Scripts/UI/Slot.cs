@@ -47,6 +47,7 @@ public class Slot : MonoBehaviour
             _item.Amount -= tmp;
         }
 
+        image.sprite = item.ItemInfo.itemSprite;
         SetColor(1f);
         SetCount(item.Amount);
     }
@@ -54,6 +55,7 @@ public class Slot : MonoBehaviour
     public void ClearSlot()
     {
         item = null;
+        image.sprite = null;
         SetColor(0);
         SetCount(0);
     }

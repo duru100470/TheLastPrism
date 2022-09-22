@@ -20,6 +20,8 @@ public class Inventory : MonoBehaviour
         
         foreach (var slot in slots)
         {
+            if (_item.Amount == 0) break;
+
             if (slot.item == null)
             {
                 slot.AddItem(ref _item);
