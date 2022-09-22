@@ -24,6 +24,6 @@ public class GravityRuleTile : RuleTile
         newTile.GetComponent<TempGravityRuleTile>().baseTile = this;
         
         // Destroy this tile
-        TileManager.Instance.DestroyTile(Pos);
+        TileManager.Instance.DestroyTile(Pos, false);
     }
 }

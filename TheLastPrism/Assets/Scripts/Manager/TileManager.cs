@@ -51,7 +51,7 @@ public class TileManager : MonoBehaviour
         {
             Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Coordinate coor = new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            DestroyTile(coor);
+            DestroyTile(coor, true);
         }
     }
 
@@ -79,18 +79,21 @@ public class TileManager : MonoBehaviour
         UpdateAdjacentRuleTile(coor);
     }
 
-    public void DestroyTile(Coordinate coor)
+    public void DestroyTile(Coordinate coor, bool hasItem)
     {
         if (TileArray[coor.X, coor.Y] == null) return;
 
-        foreach (var item in TileArray[coor.X, coor.Y].DropItemList)
+        if (hasItem)
         {
-            GameObject itemPrefab = Instantiate(GameManager.Instance.ItemPrefab);
-            itemPrefab.transform.position = new Vector2(coor.X + Random.Range(0.3f, 0.7f), coor.Y + Random.Range(0.3f, 0.7f));
+            foreach (var item in TileArray[coor.X, coor.Y].DropItemList)
+            {
+                GameObject itemPrefab = Instantiate(GameManager.Instance.ItemPrefab);
+                itemPrefab.transform.position = new Vector2(coor.X + Random.Range(0.3f, 0.7f), coor.Y + Random.Range(0.3f, 0.7f));
 
-            // CreateItemCounter(itemPrefab);
+                // CreateItemCounter(itemPrefab);
 
-            itemPrefab.GetComponent<ItemController>().Item = new Item(item);
+                itemPrefab.GetComponent<ItemController>().Item = new Item(item);
+            }
         }
 
         Destroy(TileArray[coor.X, coor.Y].gameObject);

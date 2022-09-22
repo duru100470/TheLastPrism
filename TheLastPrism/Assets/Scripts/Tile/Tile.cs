@@ -9,7 +9,7 @@ public class Tile : MonoBehaviour
     private int health;
     [SerializeField]
     private TILE_TYPE tileType;
-    [SerializeField]
+    [SerializeReference]
     private List<Item> dropItemList;
     public Coordinate Pos { get; set; }
     public TILE_TYPE TileType => tileType;

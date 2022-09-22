@@ -41,4 +41,13 @@ public class Player : MonoBehaviour, IDamage
         yield return new WaitForSeconds(duration);
         playerController.stateMachine.SetState(new PlayerIdle(playerController));
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (!other.CompareTag("Item")) return;
+
+        ItemController iController = other.GetComponent<ItemController>();
+        UIManager.Instance.Inventory.AcquireItem(ref iController.item);
+        if (iController.Item.Amount == 0)
+            Destroy(other.gameObject);
+    }
 }

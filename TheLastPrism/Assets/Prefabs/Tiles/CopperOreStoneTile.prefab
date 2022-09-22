@@ -102,7 +102,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   tileType: 1
-  dropItemList: []
+  dropItemList:
+  - itemInfo: {fileID: 11400000, guid: c5e2810c85a01114fbc4bf7ff896cc25, type: 2}
+    amount: 1
+  - itemInfo: {fileID: 11400000, guid: 7a5d7ec44bd8eb547b59eff77a88c088, type: 2}
+    amount: 1
   ruleTileSprites:
   - {fileID: 467278300, guid: 1a26938b3de9c54448001f7385ee5698, type: 3}
   - {fileID: -1392290799, guid: 1a26938b3de9c54448001f7385ee5698, type: 3}

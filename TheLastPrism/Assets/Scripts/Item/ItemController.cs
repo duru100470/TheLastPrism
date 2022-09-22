@@ -5,15 +5,15 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    [SerializeField]
-    private Item item;
+    public Item item;
     public Item Item
     {
-        get {return item;}
-        set {item = value; spriteRenderer.sprite = Item.ItemInfo.itemSprite;}
+        get { return item; }
+        set { item = value; spriteRenderer.sprite = Item.ItemInfo.itemSprite; }
     }
 
-    private void Awake() {
+    private void Awake()
+    {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 }

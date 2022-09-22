@@ -1,7 +1,6 @@
-using System;
 using UnityEngine;
 
-[Serializable]
+[System.Serializable]
 public class Item
 {
     [SerializeField]
@@ -9,7 +8,7 @@ public class Item
     [SerializeField]
     private int amount;
     
-    public ItemInfo ItemInfo => itemInfo;
+    public virtual ItemInfo ItemInfo => itemInfo;
     public int Amount
     {
         get { return amount; }
@@ -20,5 +19,10 @@ public class Item
     {
         this.itemInfo = prevItem.ItemInfo;
         this.amount = prevItem.Amount;
+    }
+
+    public Item ()
+    {
+
     }
 }
