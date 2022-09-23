@@ -16,4 +16,4 @@ MonoBehaviour:
   itemDescription: Dirt Material
   itemType: 0
   itemSprite: {fileID: 697878397, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
-  maxStack: 16
+  maxStack: 99

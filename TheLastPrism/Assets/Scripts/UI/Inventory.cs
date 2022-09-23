@@ -6,13 +6,25 @@ public class Inventory : MonoBehaviour
 {
     [SerializeField]
     private GameObject go_SlotsParent;
-
     private Slot[] slots;
-    public int SelectedSlot {get; set;} = 0;
+    private int selectedSlot;
+    public int SelectedSlot
+    {
+        get {return selectedSlot;}
+        set
+        {
+            for (int i = 0; i < slots.Length; i++)
+            {
+                slots[i].SetImageSelectedColor(value == i ? 1f : 0f);
+            }
+            selectedSlot = value;
+        }
+    }
 
     private void Start()
     {
         slots = go_SlotsParent.GetComponentsInChildren<Slot>();
+        SelectedSlot = 0;
     }
 
     public bool AcquireItem(ref Item _item)

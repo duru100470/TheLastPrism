@@ -35,6 +35,8 @@ public class TerrainGenerator : MonoBehaviour
     private float seed;
     [SerializeField]
     private Texture2D caveNoiseTexture;
+    [SerializeField]
+    private bool[,] cavernMatrix;
 
     private void Start()
     {
@@ -47,6 +49,12 @@ public class TerrainGenerator : MonoBehaviour
         TileManager.Instance.TileArray = new Tile[worldXSize, worldYSize];
         TileManager.Instance.worldXSize = worldXSize;
         TileManager.Instance.worldYSize = worldYSize;
+
+        // Generate CA Matrix
+        cavernMatrix = new bool[worldXSize, worldYSize];
+        InitializeMatrix(0.50f);
+        for (int i = 0; i < 4; i++)
+            cavernMatrix = DoSimulationStep();
 
         // Generate map
         caveNoiseTexture = GenerateNoiseTexture(seed, caveFreq);
@@ -61,7 +69,7 @@ public class TerrainGenerator : MonoBehaviour
         for (int x = 0; x < worldXSize; x++)
             for (int y = 0; y < worldYSize; y++)
             {
-                ( TileManager.Instance.TileArray[x, y] as RuleTile )?.UpdateRuleTile();
+                (TileManager.Instance.TileArray[x, y] as RuleTile)?.UpdateRuleTile();
             }
 
         TileManager.Instance.IsGenerating = false;
@@ -80,12 +88,12 @@ public class TerrainGenerator : MonoBehaviour
             }
             else if (x < (worldXSize / 2) - planeWidth)
             {
-                height -= Mathf.SmoothStep(leftSeaDepth, 0, 
+                height -= Mathf.SmoothStep(leftSeaDepth, 0,
                 (float)(x - seaWidth) / (float)((worldXSize / 2 - planeWidth) - seaWidth));
             }
             else if (x >= (worldXSize / 2) + planeWidth && x < worldXSize - seaWidth)
             {
-                height -= Mathf.SmoothStep(0, rightSeaDepth, 
+                height -= Mathf.SmoothStep(0, rightSeaDepth,
                 (float)(x - ((worldXSize / 2) + planeWidth)) / (float)(worldXSize - seaWidth - ((worldXSize / 2) + planeWidth)));
             }
             else if (x >= worldXSize - seaWidth)
@@ -97,13 +105,21 @@ public class TerrainGenerator : MonoBehaviour
             {
                 if (caveNoiseTexture.GetPixel(x, y).r > 0.2f)
                 {
-                    float dirtHeight = 
+                    float dirtHeight =
                         Mathf.PerlinNoise((x + seed + 5000) * terrainFreq, seed * terrainFreq) * 10 + 15;
-                    
-                    if (y > height - dirtHeight)
+
+                    float sandHeight =
+                        (Mathf.PerlinNoise((x + seed + 6000) * terrainFreq, seed * terrainFreq) * 10 + 15) *
+                        Mathf.Max((Mathf.Abs(x - worldXSize * 0.5f) * 2 / worldXSize - 0.5f), 0);
+
+                    if (y > height - sandHeight)
+                        TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Sand);
+                    else if (y > height - dirtHeight)
                         TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Dirt);
                     else
                     {
+                        if (!cavernMatrix[x, y]) continue;
+
                         if (tileAtlas.oreDatas[4].spread.GetPixel(x, y).r > tileAtlas.oreDatas[4].size && y <= tileAtlas.oreDatas[4].maxSpawnHeight)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.LuxShardOre);
                         else if (tileAtlas.oreDatas[3].spread.GetPixel(x, y).r > tileAtlas.oreDatas[3].size && y <= tileAtlas.oreDatas[3].maxSpawnHeight)
@@ -137,5 +153,74 @@ public class TerrainGenerator : MonoBehaviour
 
         noise.Apply();
         return noise;
+    }
+
+    private void InitializeMatrix(float _rate)
+    {
+        for (int x = 0; x < worldXSize; x++)
+            for (int y = 0; y < worldYSize; y++)
+            {
+                if (Random.Range(0, 100) < _rate * 100 + y * .5f - 25)
+                    cavernMatrix[x, y] = true;
+            }
+    }
+
+    private bool[,] DoSimulationStep()
+    {
+        bool[,] newMatrix = new bool[worldXSize, worldYSize];
+
+        for (int x = 0; x < worldXSize; x++)
+            for (int y = 0; y < worldYSize; y++)
+            {
+                int cnt = CountAliveNeighbours(x, y);
+
+                if (cavernMatrix[x, y])
+                {
+                    if (cnt < 3)
+                        newMatrix[x, y] = false;
+                    else
+                        newMatrix[x, y] = true;
+                }
+                else
+                {
+                    if (cnt > 4)
+                        newMatrix[x, y] = true;
+                    else
+                        newMatrix[x, y] = false;
+                }
+            }
+
+        return newMatrix;
+    }
+
+    private int CountAliveNeighbours(int x, int y)
+    {
+        int count = 0;
+
+        for (int i = -1; i < 2; i++)
+        {
+            for (int j = -1; j < 2; j++)
+            {
+                int neighbour_x = x + i;
+                int neighbour_y = y + j;
+                //If we're looking at the middle point
+                if (i == 0 && j == 0)
+                {
+                    //Do nothing, we don't want to add ourselves in!
+                }
+                //In case the index we're looking at it off the edge of the map
+                else if (neighbour_x < 0 || neighbour_y < 0 || neighbour_x >= worldXSize || neighbour_y >= worldYSize)
+                {
+                    count = count + 1;
+                }
+                //Otherwise, a normal check of the neighbour
+                else if (cavernMatrix[neighbour_x, neighbour_y])
+                {
+                    count = count + 1;
+                }
+            }
+        }
+
+        return count;
     }
 }

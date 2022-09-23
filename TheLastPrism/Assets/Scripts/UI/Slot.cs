@@ -7,6 +7,7 @@ using TMPro;
 public class Slot : MonoBehaviour
 {
     [SerializeField] private Image image;
+    [SerializeField] private Image imageSelected;
     [SerializeField] private TextMeshProUGUI textCount;
 
     public Item item { set; get; }
@@ -14,6 +15,7 @@ public class Slot : MonoBehaviour
     private void Start()
     {
         ClearSlot();
+        imageSelected.color = new Color(1f, 1f, 1f, 0f);
     }
 
     private void SetColor(float _alpha)
@@ -30,6 +32,11 @@ public class Slot : MonoBehaviour
             textCount.alpha = 0f;
         else
             textCount.alpha = 1f;
+    }
+
+    public void SetImageSelectedColor(float _alpha)
+    {
+        imageSelected.color = new Color(1f, 1f, 1f, _alpha);
     }
 
     public void AddItem(ref Item _item)
