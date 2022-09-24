@@ -6,18 +6,22 @@ using UnityEngine;
 public class Tool : Item
 {
     [SerializeField]
+    private ToolInfo toolInfo;
+    [SerializeField]
     private int durability;
+    public override ItemInfo ItemInfo => toolInfo;
+    public override int Amount { get => amount; set => amount = Mathf.Clamp(value, 0, ItemInfo.maxStack); }
 
-    public Tool(ItemInfo itemInfo, int amount, int durability)
+    public Tool(ToolInfo itemInfo, int amount, int durability)
     {
-        this.itemInfo = itemInfo;
+        this.toolInfo = itemInfo;
         this.amount = amount;
         this.durability = durability;
     }
 
     public override Item DeepCopy()
     {
-        return new Tool(itemInfo, amount, durability);
+        return new Tool(toolInfo, amount, durability);
     }
 
     public override void OnLeftClick()

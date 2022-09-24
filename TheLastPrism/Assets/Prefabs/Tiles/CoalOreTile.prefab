@@ -208,11 +208,13 @@ MonoBehaviour:
       data:
         itemInfo: {fileID: 11400000, guid: c5e2810c85a01114fbc4bf7ff896cc25, type: 2}
         amount: 1
+        blockInfo: {fileID: 11400000, guid: 9f69c5c49aaeb2e4a9236d032cb21b43, type: 2}
     - rid: 2535915268425646085
       type: {class: Material, ns: , asm: Assembly-CSharp}
       data:
         itemInfo: {fileID: 11400000, guid: 4ba3b773aa3cca44581a872d8ce4c20a, type: 2}
         amount: 2
+        materialInfo: {fileID: 11400000, guid: 5cce743f10c76154a9fb8cc8011d4bfc, type: 2}
 --- !u!1 &8572878289517281981
 GameObject:
   m_ObjectHideFlags: 0

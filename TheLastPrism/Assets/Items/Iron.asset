@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a69aa48bf4c4ba64e8d0ad787251f579, type: 3}
+  m_Script: {fileID: 11500000, guid: 83ea73f5b811e3b45b01d305c1af5473, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: 
   itemName: Iron
-  itemDescription: 
+  itemDescription: iron
   itemType: 5
   itemSprite: {fileID: 947912622, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
-  maxStack: 8
+  maxStack: 99

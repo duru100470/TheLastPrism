@@ -207,3 +207,4 @@ MonoBehaviour:
       data:
         itemInfo: {fileID: 11400000, guid: 16345a20b4d80ab448ff85e6a627979b, type: 2}
         amount: 1
+        blockInfo: {fileID: 11400000, guid: ac9881d43c8fb4647b335a9be6141c60, type: 2}

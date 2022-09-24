@@ -5,15 +5,20 @@ using UnityEngine;
 [System.Serializable]
 public class Block : Item
 {
-    public Block(ItemInfo itemInfo, int amount)
+    [SerializeField]
+    private BlockInfo blockInfo;
+    public override ItemInfo ItemInfo => blockInfo;
+    public override int Amount { get => amount; set => amount = Mathf.Clamp(value, 0, ItemInfo.maxStack); }
+
+    public Block(BlockInfo itemInfo, int amount)
     {
-        this.itemInfo = itemInfo;
+        this.blockInfo = itemInfo;
         this.amount = amount;
     }
 
     public override Item DeepCopy()
     {
-        return new Block(itemInfo, amount);
+        return new Block(blockInfo, amount);
     }
 
     public override void OnLeftClick()
