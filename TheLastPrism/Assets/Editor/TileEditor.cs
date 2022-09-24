@@ -21,14 +21,20 @@ public class TileEditor : Editor
         base.OnInspectorGUI();
 
         serializedObject.Update();
-        if (GUILayout.Button("Add Item"))
-        {
-            tile.DropItemList.Add(new Item());
-        }
+        GUILayout.BeginHorizontal();
         if (GUILayout.Button("Add Tool"))
         {
-            tile.DropItemList.Add(new Tool());
+            tile.DropItemList.Add(new Tool(null, 1, 0));
         }
+        if (GUILayout.Button("Add Material"))
+        {
+            tile.DropItemList.Add(new Material(null, 1));
+        }
+        if (GUILayout.Button("Add Block"))
+        {
+            tile.DropItemList.Add(new Block(null, 1));
+        }
+        GUILayout.EndHorizontal();
         serializedObject.ApplyModifiedProperties();
     }
 }
