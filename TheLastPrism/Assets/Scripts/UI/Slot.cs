@@ -43,7 +43,7 @@ public class Slot : MonoBehaviour
     {
         if (item == null)
         {
-            item = new Item(_item);
+            item = _item.DeepCopy();
             _item.Amount = 0;
         }
         // item.ItemType == _item.ItemType

@@ -69,7 +69,7 @@ public class Player : MonoBehaviour, IDamage
         // CreateItemCounter(itemPrefab);
 
         ItemController ic = itemPrefab.GetComponent<ItemController>();
-        ic.item = new Item(item);
+        ic.item = item.DeepCopy();
         ic.UpdateSprite();
         ic.SetAcquirable(3f);
 

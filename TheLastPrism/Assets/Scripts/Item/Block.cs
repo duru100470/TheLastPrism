@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Tool : Item
+public class Block : Item
 {
-    [SerializeField]
-    private int durability;
-
-    public Tool(ItemInfo itemInfo, int amount, int durability)
+    public Block(ItemInfo itemInfo, int amount)
     {
         this.itemInfo = itemInfo;
         this.amount = amount;
-        this.durability = durability;
     }
 
     public override Item DeepCopy()
     {
-        return new Tool(itemInfo, amount, durability);
+        return new Block(itemInfo, amount);
     }
 
     public override void OnLeftClick()
