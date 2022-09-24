@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerJump : IState
 {
     private PlayerController playerController;
+    private float maxFallingSpeed = 0;
 
     public PlayerJump(PlayerController playerController)
     {
@@ -49,6 +50,8 @@ public class PlayerJump : IState
         float h = Input.GetAxisRaw("Horizontal");
 
         playerController.HorizontalMove(h);
+        if (maxFallingSpeed > playerController.rigid2d.velocity.y)
+            maxFallingSpeed = playerController.rigid2d.velocity.y;
 
         // Transition
         if (playerController.rigid2d.velocity.y <= 0)
@@ -56,10 +59,13 @@ public class PlayerJump : IState
             if (playerController.IsThereLand())
             {
                 // Check Falling Damage
-                if (playerController.rigid2d.velocity.y < -15)
-                {
+                if (maxFallingSpeed == -20)
+                    playerController.player.GetDamage(9999, 1f, 0.5f, false);
+                else if (maxFallingSpeed < -17)
+                    playerController.player.GetDamage(20, 1f, 0.5f, false);
+                else if (maxFallingSpeed < -15)
                     playerController.player.GetDamage(10, 1f, 0.5f, false);
-                }
+                // Change State
                 else if (h == 0)
                     playerController.stateMachine.SetState(new PlayerIdle(playerController));
                 else

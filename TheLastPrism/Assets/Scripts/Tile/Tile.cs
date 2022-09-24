@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IDamage
 {
     [Header("Tile")]
     [SerializeField]
@@ -14,5 +14,17 @@ public class Tile : MonoBehaviour
     public Coordinate Pos { get; set; }
     public TILE_TYPE TileType => tileType;
     public List<Item> DropItemList => dropItemList;
-    public int Health { get => health; set => health = value; }
+    public int Health => health;
+
+    public virtual void GetDamage(int amount, float stunDuration, float invTime, bool ignoreInvTime)
+    {
+        health = Mathf.Max(0, health - amount);
+        if (health == 0)
+            Dead();
+    }
+
+    public virtual void Dead()
+    {
+        TileManager.Instance.DestroyTile(Pos, true);
+    }
 }

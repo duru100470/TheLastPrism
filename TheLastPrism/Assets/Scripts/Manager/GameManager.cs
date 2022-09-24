@@ -27,4 +27,13 @@ public class GameManager : MonoBehaviour
 
         CurPlayer = GameObject.Find("Player").GetComponent<Player>();
     }
+
+    private IEnumerator DoGameTick()
+    {
+        while(true)
+        {
+            EventManager.Instance.PostNotification(EVENT_TYPE.TickRisingEdge, null);
+            yield return new WaitForSeconds(.05f);
+        }
+    }
 }

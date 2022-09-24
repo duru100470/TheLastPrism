@@ -4,7 +4,8 @@ public enum EVENT_TYPE
 {
     TileChange,
     PlayerHPChanged,
-    PlayerDead
+    PlayerDead,
+    TickRisingEdge
 }
 
 public interface IListener

@@ -67,8 +67,6 @@ public class TileManager : MonoBehaviour
         var tmp = newTile.GetComponent<Tile>();
         TileArray[coor.X, coor.Y] = tmp;
         tmp.Pos = coor;
-        if (health > 0)
-            tmp.Health = health;
 
         // Notify Tile has changed        
         EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);
