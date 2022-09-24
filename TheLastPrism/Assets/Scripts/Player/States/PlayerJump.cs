@@ -51,7 +51,7 @@ public class PlayerJump : IState
         playerController.HorizontalMove(h);
 
         // Transition
-        if (playerController.rigid2d.velocity.y < 0)
+        if (playerController.rigid2d.velocity.y <= 0)
         {
             if (playerController.IsThereLand())
             {

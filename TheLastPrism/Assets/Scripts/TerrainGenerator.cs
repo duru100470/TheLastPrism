@@ -38,6 +38,10 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField]
     private bool[,] cavernMatrix;
 
+    [Header("World Border")]
+    [SerializeField]
+    private GameObject[] borderObject;
+
     private void Start()
     {
         // Randomize map seed
@@ -64,6 +68,8 @@ public class TerrainGenerator : MonoBehaviour
         tileAtlas.oreDatas[3].spread = GenerateNoiseTexture(seed + 4000, tileAtlas.oreDatas[3].freq);
         tileAtlas.oreDatas[4].spread = GenerateNoiseTexture(seed + 5000, tileAtlas.oreDatas[4].freq);
         GenerateTerrain();
+
+        GenerateWorldBorder();
 
         // Update Entire Ruletiles
         for (int x = 0; x < worldXSize; x++)
@@ -103,23 +109,32 @@ public class TerrainGenerator : MonoBehaviour
 
             for (int y = 0; y < height; y++)
             {
+                float dirtHeight =
+                    Mathf.PerlinNoise((x + seed + 5000) * terrainFreq, seed * terrainFreq) * 10 + 15;
+
+                float sandHeight =
+                    (Mathf.PerlinNoise((x + seed + 6000) * terrainFreq, seed * terrainFreq) * 10 + 15) *
+                    Mathf.Max((Mathf.Abs(x - worldXSize * 0.5f) * 2 / worldXSize - 0.5f), 0);
+
+                // For generating the floor of ocean
+                if (y == Mathf.FloorToInt(height - sandHeight) && (x < worldXSize * .5f - planeWidth || x > worldXSize * .5f + planeWidth))
+                    TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Dirt);
+
+                if (y > height - sandHeight)
+                {
+                    TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Sand);
+                    continue;
+                }
+
                 if (caveNoiseTexture.GetPixel(x, y).r > 0.2f)
                 {
-                    float dirtHeight =
-                        Mathf.PerlinNoise((x + seed + 5000) * terrainFreq, seed * terrainFreq) * 10 + 15;
 
-                    float sandHeight =
-                        (Mathf.PerlinNoise((x + seed + 6000) * terrainFreq, seed * terrainFreq) * 10 + 15) *
-                        Mathf.Max((Mathf.Abs(x - worldXSize * 0.5f) * 2 / worldXSize - 0.5f), 0);
+                    if (!cavernMatrix[x, y]) continue;
 
-                    if (y > height - sandHeight)
-                        TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Sand);
-                    else if (y > height - dirtHeight)
+                    if (y > height - dirtHeight)
                         TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Dirt);
                     else
                     {
-                        if (!cavernMatrix[x, y]) continue;
-
                         if (tileAtlas.oreDatas[4].spread.GetPixel(x, y).r > tileAtlas.oreDatas[4].size && y <= tileAtlas.oreDatas[4].maxSpawnHeight)
                             TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.LuxShardOre);
                         else if (tileAtlas.oreDatas[3].spread.GetPixel(x, y).r > tileAtlas.oreDatas[3].size && y <= tileAtlas.oreDatas[3].maxSpawnHeight)
@@ -153,6 +168,19 @@ public class TerrainGenerator : MonoBehaviour
 
         noise.Apply();
         return noise;
+    }
+
+    private void GenerateWorldBorder()
+    {
+        borderObject[0].transform.localScale = new Vector3(worldXSize, 1f, 1f);
+        borderObject[2].transform.localScale = new Vector3(worldXSize, 1f, 1f);
+        borderObject[1].transform.localScale = new Vector3(1f, worldYSize, 1f);
+        borderObject[3].transform.localScale = new Vector3(1f, worldYSize, 1f);
+
+        borderObject[0].transform.position = new Vector3(worldXSize * .5f, -0.5f, 0f);
+        borderObject[1].transform.position = new Vector3(-0.5f, worldYSize * .5f, 0f);
+        borderObject[2].transform.position = new Vector3(worldXSize * .5f, worldYSize + .5f, 0f);
+        borderObject[3].transform.position = new Vector3(worldXSize + .5f, worldYSize * .5f, 0f);
     }
 
     private void InitializeMatrix(float _rate)

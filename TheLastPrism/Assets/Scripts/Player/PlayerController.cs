@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 Pos1 = new Vector2(rigid2d.position.x + 0.25f, rigid2d.position.y);
         Vector2 Pos2 = new Vector2(rigid2d.position.x - 0.25f, rigid2d.position.y);
-
+        
         RaycastHit2D raycastHit2DDown1 = Physics2D.Raycast(Pos1, Vector3.down, 0.6f, LayerMask.GetMask("Ground"));
         RaycastHit2D raycastHit2DDown2 = Physics2D.Raycast(Pos2, Vector3.down, 0.6f, LayerMask.GetMask("Ground"));
         RaycastHit2D raycastHit2DDown3 = Physics2D.Raycast(rigid2d.position, Vector3.down, 0.6f, LayerMask.GetMask("Ground"));
