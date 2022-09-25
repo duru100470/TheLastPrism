@@ -55,13 +55,13 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    public void PlaceTile(Coordinate coor, TILE_TYPE tileType, int health = 0)
+    public bool PlaceTile(Coordinate coor, TILE_TYPE tileType, int health = 0)
     {
-        if (TileArray[coor.X, coor.Y] != null) return;
+        if (TileArray[coor.X, coor.Y] != null) return false;
 
         GameObject newTile = Instantiate(tilePrefabList[(int)tileType]);
         newTile.transform.parent = tileParent.transform;
-        newTile.transform.position = new Vector2(coor.X + 0.5f, coor.Y + 0.5f);
+        newTile.transform.position = Coordinate.CoordinatetoWorldPoint(coor);
 
         // Initialize Tile Class
         var tmp = newTile.GetComponent<Tile>();
@@ -72,9 +72,10 @@ public class TileManager : MonoBehaviour
         EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);
 
         // Update rule tiles
-        if (IsGenerating) return;
+        if (IsGenerating) return true;
         (tmp as RuleTile)?.UpdateRuleTile();
         UpdateAdjacentRuleTile(coor);
+        return true;
     }
 
     public void DestroyTile(Coordinate coor, bool hasItem)
@@ -86,7 +87,7 @@ public class TileManager : MonoBehaviour
             foreach (var item in TileArray[coor.X, coor.Y].DropItemList)
             {
                 GameObject itemPrefab = Instantiate(GameManager.Instance.ItemPrefab);
-                itemPrefab.transform.position = new Vector2(coor.X + Random.Range(0.3f, 0.7f), coor.Y + Random.Range(0.3f, 0.7f));
+                itemPrefab.transform.position = Coordinate.CoordinatetoWorldPoint(coor) + new Vector2(Random.Range(-0.2f, 0.2f), Random.Range(-0.2f, 0.2f));
 
                 // CreateItemCounter(itemPrefab);
 

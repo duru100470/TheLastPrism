@@ -71,4 +71,19 @@ public class Coordinate
     {
         return !Object.Equals(c1, c2);
     }
+
+    public static int Distance (Coordinate c1, Coordinate c2)
+    {
+        return Mathf.Abs(c1.X - c2.X) + Mathf.Abs(c1.Y - c2.Y);
+    }
+
+    public static Coordinate WorldPointToCoordinate (Vector3 point)
+    {
+        return new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
+    }
+
+    public static Vector2 CoordinatetoWorldPoint (Coordinate coor)
+    {
+        return new Vector2(coor.X + 0.5f, coor.Y + 0.5f);
+    }
 }

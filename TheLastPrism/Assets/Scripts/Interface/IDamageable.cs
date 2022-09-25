@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDamage
 {
-    void GetDamage(int amount, float stunDuration, float invTime, bool ignoreInvTime);
+    void GetDamage(int amount, float invTime, bool ignoreInvTime);
     void Dead();
 }

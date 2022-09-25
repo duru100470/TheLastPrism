@@ -23,11 +23,22 @@ public class Block : Item
 
     public override void OnLeftClick()
     {
+        Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Coordinate coor = Coordinate.WorldPointToCoordinate(point);
 
+        if (Coordinate.Distance(Coordinate.WorldPointToCoordinate(GameManager.Instance.CurPlayer.transform.position), coor) > 2) return;
+
+        TileManager.Instance.TileArray[coor.X, coor.Y]?.GetDamage(1, 0, true);
     }
 
     public override void OnRightClick()
     {
+        Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Coordinate coor = Coordinate.WorldPointToCoordinate(point);
 
+        if (Coordinate.Distance(Coordinate.WorldPointToCoordinate(GameManager.Instance.CurPlayer.transform.position), coor) > 2) return;
+
+        if (TileManager.Instance.PlaceTile(coor, blockInfo.tileType))
+            Amount--;
     }
 }

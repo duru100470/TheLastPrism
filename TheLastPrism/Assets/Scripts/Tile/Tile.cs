@@ -16,7 +16,7 @@ public class Tile : MonoBehaviour, IDamage
     public List<Item> DropItemList => dropItemList;
     public int Health => health;
 
-    public virtual void GetDamage(int amount, float stunDuration, float invTime, bool ignoreInvTime)
+    public virtual void GetDamage(int amount, float invTime, bool ignoreInvTime)
     {
         health = Mathf.Max(0, health - amount);
         if (health == 0)

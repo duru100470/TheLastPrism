@@ -54,17 +54,20 @@ public class Slot : MonoBehaviour
             _item.Amount -= tmp;
         }
 
-        image.sprite = item.ItemInfo.itemSprite;
-        SetColor(1f);
-        SetCount(item.Amount);
+        FreshSlot();
+    }
+
+    public void FreshSlot()
+    {
+        image.sprite = item?.ItemInfo.itemSprite;
+        SetColor((item != null) ? 1f : 0f);
+        SetCount(item?.Amount ?? 0);
     }
 
     public void ClearSlot()
     {
         item = null;
-        image.sprite = null;
-        SetColor(0);
-        SetCount(0);
+        FreshSlot();
     }
 
     public bool IsSlotFull()

@@ -55,6 +55,14 @@ public class Inventory : MonoBehaviour
         return slots[_slot].item;
     }
 
+    public void FreshInventory()
+    {
+        foreach (var slot in slots)
+        {
+            slot.FreshSlot();
+        }
+    }
+
     public bool FindItem(ITEM_TYPE itemType, int amount)
     {
         int total = 0;
@@ -75,6 +83,23 @@ public class Inventory : MonoBehaviour
         if (slots[_slot].item != null)
         {
             slots[_slot].ClearSlot();
+            isSuccessful = true;
+        }
+
+        return isSuccessful;
+    }
+
+    public bool RemoveItem(int _slot, int amount)
+    {
+        bool isSuccessful = false;
+
+        if (slots[_slot].item != null && slots[_slot].item.Amount >= amount)
+        {
+            slots[_slot].item.Amount -= amount;
+
+            if (slots[_slot].item.Amount == 0) slots[_slot].ClearSlot();
+            else slots[_slot].FreshSlot();
+
             isSuccessful = true;
         }
 

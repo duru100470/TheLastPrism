@@ -60,11 +60,11 @@ public class PlayerJump : IState
             {
                 // Check Falling Damage
                 if (maxFallingSpeed == -20)
-                    playerController.player.GetDamage(9999, 1f, 0.5f, false);
+                    playerController.player.GetDamage(9999, 0.5f, false);
                 else if (maxFallingSpeed < -17)
-                    playerController.player.GetDamage(20, 1f, 0.5f, false);
+                    playerController.player.GetDamage(20, 0.5f, false);
                 else if (maxFallingSpeed < -15)
-                    playerController.player.GetDamage(10, 1f, 0.5f, false);
+                    playerController.player.GetDamage(10, 0.5f, false);
                 // Change State
                 else if (h == 0)
                     playerController.stateMachine.SetState(new PlayerIdle(playerController));
