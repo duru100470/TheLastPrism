@@ -38,7 +38,15 @@ public class Block : Item
 
         if (Coordinate.Distance(Coordinate.WorldPointToCoordinate(GameManager.Instance.CurPlayer.transform.position), coor) > 2) return;
 
-        if (TileManager.Instance.PlaceTile(coor, blockInfo.tileType))
-            Amount--;
+        Tile[,] tileArray = TileManager.Instance.TileArray;
+        if ((coor.X < TileManager.Instance.worldXSize && tileArray[coor.X + 1, coor.Y] != null) ||
+            (coor.X > 0 && tileArray[coor.X - 1, coor.Y] != null) ||
+            (coor.Y < TileManager.Instance.worldYSize && tileArray[coor.X, coor.Y + 1] != null) ||
+            (coor.Y > 0 && tileArray[coor.X, coor.Y - 1] != null)
+        )
+        {
+            if (TileManager.Instance.PlaceTile(coor, blockInfo.tileType))
+                Amount--;
+        }
     }
 }
