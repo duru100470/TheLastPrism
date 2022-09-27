@@ -149,7 +149,9 @@ MonoBehaviour:
   health: 10
   tileType: 0
   dropItemList:
-  - rid: 2535915268425646080
+  - rid: 2535915331107422212
+  handMultiplier: 1
+  pickaxeMultiplier: 5
   ruleTileSprites:
   - {fileID: -1875872682, guid: 60f65df3689d8664f871a00329b0ba95, type: 3}
   - {fileID: -669245410, guid: 60f65df3689d8664f871a00329b0ba95, type: 3}
@@ -201,9 +203,8 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2535915268425646080
-      type: {class: Block, ns: , asm: Assembly-CSharp}
+    - rid: 2535915331107422212
+      type: {class: ItemBlock, ns: , asm: Assembly-CSharp}
       data:
-        itemInfo: {fileID: 11400000, guid: ad992a79b5c903142a862dfcbc7f4602, type: 2}
         amount: 1
         blockInfo: {fileID: 11400000, guid: a769d51431507e94eaf29d2ed964ab4c, type: 2}

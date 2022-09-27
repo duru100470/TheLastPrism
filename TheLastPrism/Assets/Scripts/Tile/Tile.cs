@@ -28,10 +28,10 @@ public class Tile : MonoBehaviour, IDamage
         switch (dmgType)
         {
             case DAMAGE_TYPE.Hand:
-                health = Mathf.Max(0, health - amount) * handMultiplier;
+                health = Mathf.Max(0, health - amount * handMultiplier);
                 break;
             case DAMAGE_TYPE.Pickaxe:
-                health = Mathf.Max(0, health - amount) * pickaxeMultiplier;
+                health = Mathf.Max(0, health - amount * pickaxeMultiplier);
                 break;
         }
         

@@ -24,15 +24,15 @@ public class TileEditor : Editor
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Add Tool"))
         {
-            tile.DropItemList.Add(new Tool(null, 1, 0));
+            tile.DropItemList.Add(new ItemTool(null, 1, 0));
         }
         if (GUILayout.Button("Add Material"))
         {
-            tile.DropItemList.Add(new Material(null, 1));
+            tile.DropItemList.Add(new ItemMaterial(null, 1));
         }
         if (GUILayout.Button("Add Block"))
         {
-            tile.DropItemList.Add(new Block(null, 1));
+            tile.DropItemList.Add(new ItemBlock(null, 1));
         }
         GUILayout.EndHorizontal();
         serializedObject.ApplyModifiedProperties();

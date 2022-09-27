@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Material : Item
+public class ItemMaterial : Item
 {
     [SerializeField]
     private MaterialInfo materialInfo;
     public override ItemInfo ItemInfo => materialInfo;
     public override int Amount { get => amount; set => amount = Mathf.Clamp(value, 0, ItemInfo.maxStack); }
 
-    public Material(MaterialInfo itemInfo, int amount)
+    public ItemMaterial(MaterialInfo itemInfo, int amount)
     {
         this.materialInfo = itemInfo;
         this.amount = amount;
@@ -18,7 +18,7 @@ public class Material : Item
 
     public override Item DeepCopy()
     {
-        return new Material(materialInfo, amount);
+        return new ItemMaterial(materialInfo, amount);
     }
 
     public override void OnLeftClick()

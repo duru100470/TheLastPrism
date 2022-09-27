@@ -146,10 +146,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0525671002eabd4c815d44927346c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 1
   tileType: 8
-  dropItemList: []
-  ruleTileSprites: []
+  dropItemList:
+  - rid: 2535915331107422222
+  handMultiplier: 1
+  pickaxeMultiplier: 5
+  ruleTileSprites:
+  - {fileID: -407026127, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -1650121314, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -336336425, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 424891779, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -238974478, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -724852197, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 130398870, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -1630914538, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 1427180894, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -1325916769, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -232834328, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 856971445, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -1968710524, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -923438505, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 1310937817, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 276794919, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -565842756, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -50503275, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -994501905, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -548461892, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 1564224853, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -1011897933, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 1009849334, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 1359572537, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 1546156426, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 580836294, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -507072171, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -133943349, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 84829523, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -572685044, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -899489519, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -1272723747, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 960563412, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -63630438, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 12883258, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 1855112534, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -185244118, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -1613366336, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 693056338, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -883683927, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -1104547292, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 1322606963, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 2541636, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -870950082, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 1202763249, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: -1474884272, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
+  - {fileID: 869108509, guid: d8cef26e29b82b44eb260e1200543a5e, type: 3}
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 2535915331107422222
+      type: {class: ItemTool, ns: , asm: Assembly-CSharp}
+      data:
+        amount: 1
+        toolInfo: {fileID: 11400000, guid: ae8e3586aa0836d4f97fdc6f46300def, type: 2}
+        durability: 10
