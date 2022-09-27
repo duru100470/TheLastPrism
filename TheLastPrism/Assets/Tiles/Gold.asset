@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1965b0bcd29534349a02d8deda15ce5f, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: 
-  oreType: 5
-  maxSpawnHeight: 20
+  oreType: 7
+  maxSpawnHeight: 35
   freq: 0.09
   size: 0.8
   spread: {fileID: 0}

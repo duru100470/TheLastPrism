@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4204646616370849396}
   - component: {fileID: 3592377496693787935}
   m_Layer: 6
-  m_Name: CopperOreTile
+  m_Name: StoneIronOreTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,8 +150,8 @@ MonoBehaviour:
   health: 20
   tileType: 1
   dropItemList:
-  - rid: 2535915331107422210
-  - rid: 2535915331107422211
+  - rid: 2535915331107422216
+  - rid: 2535915331107422217
   handMultiplier: 1
   pickaxeMultiplier: 5
   ruleTileSprites:
@@ -205,16 +205,16 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 2535915331107422210
+    - rid: 2535915331107422216
       type: {class: ItemBlock, ns: , asm: Assembly-CSharp}
       data:
         amount: 1
         blockInfo: {fileID: 11400000, guid: 9f69c5c49aaeb2e4a9236d032cb21b43, type: 2}
-    - rid: 2535915331107422211
+    - rid: 2535915331107422217
       type: {class: ItemMaterial, ns: , asm: Assembly-CSharp}
       data:
         amount: 1
-        materialInfo: {fileID: 11400000, guid: 23b60cae0184d764f98eb491cf0ca82a, type: 2}
+        materialInfo: {fileID: 11400000, guid: a16225251b617724283f6f24385d2035, type: 2}
 --- !u!1 &8572878289517281981
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +288,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -175260841, guid: f657703fae4c41d48be5b42dadec2181, type: 3}
+  m_Sprite: {fileID: 77765382, guid: f657703fae4c41d48be5b42dadec2181, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

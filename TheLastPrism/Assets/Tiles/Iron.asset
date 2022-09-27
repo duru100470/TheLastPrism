@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1965b0bcd29534349a02d8deda15ce5f, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: 
-  oreType: 4
+  oreType: 6
   maxSpawnHeight: 60
   freq: 0.09
   size: 0.8

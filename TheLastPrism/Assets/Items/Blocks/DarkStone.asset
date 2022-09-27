@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05343a880dcc8f2438f3d40e61e52b17, type: 3}
-  m_Name: Sand
+  m_Name: DarkStone
   m_EditorClassIdentifier: 
-  itemName: Sand
-  itemDescription: sand
-  itemType: 3
-  itemSprite: {fileID: 594153791, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
+  itemName: Dark Stone
+  itemDescription: darkstone
+  itemType: 2
+  itemSprite: {fileID: -807781280, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
   maxStack: 99
-  tileType: 3
+  tileType: 2

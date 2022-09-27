@@ -6,12 +6,18 @@ public enum TILE_TYPE
 {
     Dirt,
     Stone,
+    DarkStone,
     Sand,
-    CoalOre,
-    CopperOre,
-    IronOre,
-    GoldOre,
-    LuxShardOre,
+    StoneCoalOre,
+    StoneCopperOre,
+    StoneIronOre,
+    StoneGoldOre,
+    StoneLuxShardOre,
+    DarkStoneCoalOre,
+    DarkStoneCopperOre,
+    DarkStoneIronOre,
+    DarkStoneGoldOre,
+    DarkStoneLuxShardOre,
     Debug
 }
 
@@ -19,6 +25,7 @@ public enum ITEM_TYPE
 {
     Dirt,
     Stone,
+    DarkStone,
     Sand,
     CoalOre,
     CopperOre,

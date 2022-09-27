@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1965b0bcd29534349a02d8deda15ce5f, type: 3}
   m_Name: Copper
   m_EditorClassIdentifier: 
-  oreType: 3
+  oreType: 5
   maxSpawnHeight: 80
   freq: 0.1
   size: 0.8
