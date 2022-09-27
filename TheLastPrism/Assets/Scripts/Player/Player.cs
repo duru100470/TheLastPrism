@@ -52,7 +52,7 @@ public class Player : MonoBehaviour, IDamage
 
             if (Coordinate.Distance(Coordinate.WorldPointToCoordinate(transform.position), coor) > 2) return;
 
-            TileManager.Instance.TileArray[coor.X, coor.Y]?.GetDamage(1, 0, true);
+            TileManager.Instance.TileArray[coor.X, coor.Y]?.GetDamage(1, DAMAGE_TYPE.Hand, 0, true);
             return;
         }
 
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour, IDamage
         UIManager.Instance.Inventory.RemoveItem(selected, 1);
     }
 
-    public void GetDamage(int amount, float invTime, bool ignoreInvTime)
+    public void GetDamage(int amount, DAMAGE_TYPE dmgType, float invTime, bool ignoreInvTime)
     {
         health = Mathf.Max(0, health - amount);
         if (health == 0)

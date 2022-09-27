@@ -11,20 +11,36 @@ public class Tile : MonoBehaviour, IDamage
     private TILE_TYPE tileType;
     [SerializeReference]
     private List<Item> dropItemList;
+
+    [Header("Damage Multiplier")]
+    [SerializeField]
+    private int handMultiplier = 1;
+    [SerializeField]
+    private int pickaxeMultiplier = 5;
+
     public Coordinate Pos { get; set; }
     public TILE_TYPE TileType => tileType;
     public List<Item> DropItemList => dropItemList;
     public int Health => health;
 
-    public virtual void GetDamage(int amount, float invTime, bool ignoreInvTime)
+    public virtual void GetDamage(int amount, DAMAGE_TYPE dmgType, float invTime, bool ignoreInvTime)
     {
-        health = Mathf.Max(0, health - amount);
+        switch (dmgType)
+        {
+            case DAMAGE_TYPE.Hand:
+                health = Mathf.Max(0, health - amount) * handMultiplier;
+                break;
+            case DAMAGE_TYPE.Pickaxe:
+                health = Mathf.Max(0, health - amount) * pickaxeMultiplier;
+                break;
+        }
+        
         if (health == 0)
             Dead();
     }
 
     public virtual void Dead()
     {
-        TileManager.Instance.DestroyTile(Pos, true);
+        TileManager.Instance.DestroyTile(Pos);
     }
 }

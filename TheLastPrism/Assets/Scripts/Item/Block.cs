@@ -28,7 +28,7 @@ public class Block : Item
 
         if (Coordinate.Distance(Coordinate.WorldPointToCoordinate(GameManager.Instance.CurPlayer.transform.position), coor) > 2) return;
 
-        TileManager.Instance.TileArray[coor.X, coor.Y]?.GetDamage(1, 0, true);
+        TileManager.Instance.TileArray[coor.X, coor.Y]?.GetDamage(1, DAMAGE_TYPE.Hand, 0, true);
     }
 
     public override void OnRightClick()

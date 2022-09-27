@@ -51,7 +51,7 @@ public class TileManager : MonoBehaviour
         {
             Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Coordinate coor = new Coordinate(Mathf.FloorToInt(point.x), Mathf.FloorToInt(point.y));
-            DestroyTile(coor, true);
+            DestroyTile(coor);
         }
     }
 
@@ -78,7 +78,7 @@ public class TileManager : MonoBehaviour
         return true;
     }
 
-    public void DestroyTile(Coordinate coor, bool hasItem)
+    public void DestroyTile(Coordinate coor, bool hasItem = true)
     {
         if (TileArray[coor.X, coor.Y] == null) return;
 
