@@ -10,8 +10,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject itemPrefab;
+    [SerializeField]
+    private GameObject testPrefab;
 
     public GameObject ItemPrefab => itemPrefab;
+    public GameObject TestPrefab => testPrefab;
 
     private void Awake()
     {
@@ -26,6 +29,7 @@ public class GameManager : MonoBehaviour
         }
 
         CurPlayer = GameObject.Find("Player").GetComponent<Player>();
+        StartCoroutine(DoGameTick());
     }
 
     private IEnumerator DoGameTick()

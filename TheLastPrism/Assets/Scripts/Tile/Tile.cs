@@ -14,9 +14,9 @@ public class Tile : MonoBehaviour, IDamage
 
     [Header("Damage Multiplier")]
     [SerializeField]
-    private int handMultiplier = 1;
+    private float handMultiplier = 1;
     [SerializeField]
-    private int pickaxeMultiplier = 5;
+    private float pickaxeMultiplier = 5;
 
     public Coordinate Pos { get; set; }
     public TILE_TYPE TileType => tileType;
@@ -28,13 +28,13 @@ public class Tile : MonoBehaviour, IDamage
         switch (dmgType)
         {
             case DAMAGE_TYPE.Hand:
-                health = Mathf.Max(0, health - amount * handMultiplier);
+                health = Mathf.Max(0, health - (int)(amount * handMultiplier));
                 break;
             case DAMAGE_TYPE.Pickaxe:
-                health = Mathf.Max(0, health - amount * pickaxeMultiplier);
+                health = Mathf.Max(0, health - (int)(amount * pickaxeMultiplier));
                 break;
         }
-        
+
         if (health == 0)
             Dead();
     }

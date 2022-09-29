@@ -26,6 +26,10 @@ public class ItemTool : Item
 
     public override void OnLeftClick()
     {
+        // Check if entity is hit
+        // Check if structure is hit
+
+        // Check if tile is hit
         Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Coordinate coor = Coordinate.WorldPointToCoordinate(point);
 

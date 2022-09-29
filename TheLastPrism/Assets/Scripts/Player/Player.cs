@@ -8,6 +8,8 @@ public class Player : MonoBehaviour, IDamage
     private int health;
     [SerializeField]
     private int maxHealth;
+    [SerializeField]
+    private Transform attackPoint;
     private PlayerController playerController;
 
     public int Health => health;
@@ -18,7 +20,7 @@ public class Player : MonoBehaviour, IDamage
     }
 
     private void Update()
-    {   
+    {
         if (playerController.stateMachine.CurruentState.GetType() == typeof(PlayerStun))
             return;
         if (playerController.stateMachine.CurruentState.GetType() == typeof(PlayerDead))
@@ -38,6 +40,15 @@ public class Player : MonoBehaviour, IDamage
         if (Input.GetMouseButtonDown(1))
         {
             ItemRightClick();
+        }
+
+        // For debug
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GameObject test = Instantiate(GameManager.Instance.TestPrefab);
+
+            test.transform.position = new Vector3(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y), 0);
+            test.GetComponent<Structure>().SetPosition(Coordinate.WorldPointToCoordinate(transform.position));
         }
     }
 

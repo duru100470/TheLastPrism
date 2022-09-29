@@ -36,6 +36,8 @@ public class EventManager : MonoBehaviour
         Listeners.Add(eType, ListenList);
     }
 
+    public void RemoveListener(EVENT_TYPE eType, IListener listener) => Listeners[eType].Remove(listener);
+
     public void RemoveEvent(EVENT_TYPE eType) => Listeners.Remove(eType);
 
     public void PostNotification(EVENT_TYPE eType, Component sender, object param = null)
