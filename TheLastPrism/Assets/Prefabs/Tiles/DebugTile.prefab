@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1
-  tileType: 2147483647
+  tileType: 14
   dropItemList:
   - rid: 2535915331107422222
   handMultiplier: 1
@@ -207,5 +207,5 @@ MonoBehaviour:
       type: {class: ItemTool, ns: , asm: Assembly-CSharp}
       data:
         amount: 1
-        toolInfo: {fileID: 11400000, guid: ae8e3586aa0836d4f97fdc6f46300def, type: 2}
-        durability: 10
+        toolInfo: {fileID: 11400000, guid: 4d1f7291eac0e50419519ad5442cdee6, type: 2}
+        durability: 100

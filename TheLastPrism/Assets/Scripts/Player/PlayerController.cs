@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public int JumpCount { get; set; }
     public bool IsJumping { get; set; }
     public bool IsCoyoteTimeEnable { get; set; }
+    public bool IsHeadingRight { get; private set; } = true;
 
     public SpriteRenderer spriteRenderer { get; set; }
     public Rigidbody2D rigid2d { get; set; }
@@ -68,7 +69,13 @@ public class PlayerController : MonoBehaviour
         // Flip Sprite
         if (Input.GetButton("Horizontal"))
         {
-            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+            // spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == -1;
+            IsHeadingRight = Input.GetAxisRaw("Horizontal") == 1;
+
+            if (IsHeadingRight)
+                transform.eulerAngles = new Vector3(0f, 0f, 0f);
+            else
+                transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
 
         // Check Side
@@ -92,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 Pos1 = new Vector2(rigid2d.position.x + 0.25f, rigid2d.position.y);
         Vector2 Pos2 = new Vector2(rigid2d.position.x - 0.25f, rigid2d.position.y);
-        
+
         RaycastHit2D raycastHit2DDown1 = Physics2D.Raycast(Pos1, Vector3.down, 0.6f, LayerMask.GetMask("Ground"));
         RaycastHit2D raycastHit2DDown2 = Physics2D.Raycast(Pos2, Vector3.down, 0.6f, LayerMask.GetMask("Ground"));
         RaycastHit2D raycastHit2DDown3 = Physics2D.Raycast(rigid2d.position, Vector3.down, 0.6f, LayerMask.GetMask("Ground"));

@@ -5,14 +5,35 @@ using UnityEngine;
 public class MainCamera : MonoBehaviour
 {
     [SerializeField]
-    private float speed;
+    private float smoothTimeX, smoothTimeY;
+    [SerializeField]
+    private Vector2 velocity;
+    [SerializeField]
+    private GameObject player;
+    [SerializeField]
+    private Vector2 minPos, maxPos;
+    [SerializeField]
+    private bool bound;
 
-    private void Update() {
-        Vector3 move = new Vector3(0, 0, 0);
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
 
-        move.x += Time.deltaTime * Input.GetAxisRaw("Horizontal") * speed;
-        move.y += Time.deltaTime * Input.GetAxisRaw("Vertical") * speed;
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
+        float posY = Mathf.SmoothDamp(transform.position.y, player.transform.position.y, ref velocity.y, smoothTimeY);
 
-        transform.position += move;
+        transform.position = new Vector3(posX, posY, transform.position.z);
+
+        if (bound)
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, minPos.x, maxPos.x),
+                Mathf.Clamp(transform.position.y, minPos.y, maxPos.y),
+                Mathf.Clamp(transform.position.z, transform.position.z, transform.position.z));
+        }
     }
 }

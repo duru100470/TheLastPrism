@@ -27,7 +27,30 @@ public class ItemTool : Item
     public override void OnLeftClick()
     {
         // Check if entity is hit
+        Collider2D[] entityColls = GameManager.Instance.CurPlayer.GetAttackedCollider2D(LayerMask.GetMask("Enemy"));
+        if (entityColls is not null)
+        {
+            foreach (var coll in entityColls)
+            {
+                coll.GetComponent<Structure>().GetDamage(toolInfo.damage, toolInfo.dmgType, 0, true);
+            }
+
+            UseDurability();
+            return;
+        }
+
         // Check if structure is hit
+        Collider2D[] structureColls = GameManager.Instance.CurPlayer.GetAttackedCollider2D(LayerMask.GetMask("Structure"));
+        if (structureColls is not null)
+        {
+            foreach (var coll in structureColls)
+            {
+                coll.GetComponent<Structure>().GetDamage(toolInfo.damage, toolInfo.dmgType, 0, true);
+            }
+
+            UseDurability();
+            return;
+        }
 
         // Check if tile is hit
         Vector3 point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -39,12 +62,17 @@ public class ItemTool : Item
 
         if (target == null) return;
         target.GetDamage(toolInfo.damage, toolInfo.dmgType, 0, true);
-        durability--;
-        if (durability <= 0) Amount = 0;
+        UseDurability();
     }
 
     public override void OnRightClick()
     {
 
+    }
+
+    private void UseDurability()
+    {
+        durability--;
+        if (durability <= 0) Amount = 0;
     }
 }

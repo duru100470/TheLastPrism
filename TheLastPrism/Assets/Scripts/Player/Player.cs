@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamage
 {
+    [Header("Health Properties")]
     [SerializeField]
     private int health;
     [SerializeField]
     private int maxHealth;
+
+    [Header("Attack Properties")]
     [SerializeField]
     private Transform attackPoint;
+    [SerializeField]
+    private float attackRange;
     private PlayerController playerController;
 
     public int Health => health;
+
+    private void OnDrawGizmos()
+    {
+        if (attackPoint is null) return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
 
     private void Awake()
     {
@@ -154,6 +167,11 @@ public class Player : MonoBehaviour, IDamage
         playerController.stateMachine.SetState(new PlayerStun(playerController));
         yield return new WaitForSeconds(duration);
         playerController.stateMachine.SetState(new PlayerIdle(playerController));
+    }
+
+    public Collider2D[] GetAttackedCollider2D(LayerMask attackMask)
+    {
+        return Physics2D.OverlapCircleAll(attackPoint.position * (playerController.IsHeadingRight ? 1 : -1), attackRange, attackMask);
     }
 
     private void OnTriggerStay2D(Collider2D other)

@@ -18,7 +18,7 @@ public enum TILE_TYPE
     DarkStoneIronOre,
     DarkStoneGoldOre,
     DarkStoneLuxShardOre,
-    Debug = int.MaxValue
+    Debug
 }
 
 public enum ITEM_TYPE
@@ -32,7 +32,7 @@ public enum ITEM_TYPE
     IronOre,
     GoldOre,
     LuxShardOre,
-    Debug = int.MaxValue
+    Debug
 }
 
 [System.Serializable]

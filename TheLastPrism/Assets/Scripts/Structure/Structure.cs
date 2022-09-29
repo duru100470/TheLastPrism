@@ -35,7 +35,6 @@ public abstract class Structure : MonoBehaviour, IListener, IDamage
         switch (eType)
         {
             case EVENT_TYPE.TileChange:
-                Debug.Log("Asdasdasd");
                 foreach (var pos in floorPosList)
                 {
                     if (TileManager.Instance.TileArray[pos.X, pos.Y] is null)
