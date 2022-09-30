@@ -9,7 +9,8 @@ public class RuleTile : Tile
     private Sprite[] ruleTileSprites;
     protected SpriteRenderer spriteRenderer;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     

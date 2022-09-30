@@ -13,6 +13,8 @@ public class TileManager : MonoBehaviour
 
     [SerializeField]
     private List<GameObject> tilePrefabList;
+    [SerializeField]
+    private GameObject crackEffect;
 
     [Header("Debug")]
     [SerializeField]
@@ -67,6 +69,10 @@ public class TileManager : MonoBehaviour
         var tmp = newTile.GetComponent<Tile>();
         TileArray[coor.X, coor.Y] = tmp;
         tmp.Pos = coor;
+        GameObject effect = Instantiate(crackEffect);
+        effect.transform.parent = newTile.transform;
+        effect.transform.position = newTile.transform.position;
+        tmp.crackEffect = effect.GetComponent<TileCrackEffect>();
 
         // Notify Tile has changed        
         EventManager.Instance.PostNotification(EVENT_TYPE.TileChange, null, coor);

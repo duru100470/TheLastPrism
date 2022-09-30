@@ -2175,6 +2175,7 @@ MonoBehaviour:
   - {fileID: 4281568383764662689, guid: 40feb071117fe9a42a13dcd69f5dc04b, type: 3}
   - {fileID: 4281568383764662689, guid: a4fe0b09fccf77046891c7d58757ea95, type: 3}
   - {fileID: 4281568383764662689, guid: 7e30142c69732a14fb323c42f2150840, type: 3}
+  crackEffect: {fileID: 4790999362675383367, guid: a033b97e2eee50645902abdaae9044a9, type: 3}
   tile: {fileID: 929461458784902681, guid: edfade168660f5b4bb5b6f9fa011b4f8, type: 3}
   isDebugMod: 0
 --- !u!4 &1413166238
