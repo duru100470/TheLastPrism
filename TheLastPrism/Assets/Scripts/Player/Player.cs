@@ -122,6 +122,9 @@ public class Player : MonoBehaviour, IDamage
             UIManager.Instance.Inventory.SelectedSlot = 7;
         if (Input.GetKeyDown(KeyCode.Alpha9))
             UIManager.Instance.Inventory.SelectedSlot = 8;
+
+        Item curItem = UIManager.Instance.Inventory.GetItemInfo(UIManager.Instance.Inventory.SelectedSlot);
+        UpdatePreviewStructure(curItem);
     }
 
     private void ThrowItem()
@@ -189,5 +192,19 @@ public class Player : MonoBehaviour, IDamage
         UIManager.Instance.Inventory.AcquireItem(ref iController.item);
         if (iController.item.Amount == 0)
             Destroy(other.gameObject);
+    }
+
+    private void UpdatePreviewStructure(Item item)
+    {
+        if (item is ItemStructure)
+        {
+            previewStructure.SetActive(true);
+            previewStructure.GetComponent<SpriteRenderer>().sprite = (item.ItemInfo as StructureInfo).structureSprite;
+            previewStructure.GetComponent<PreviewStructure>().Width = (item.ItemInfo as StructureInfo).width;
+        }
+        else
+        {
+            previewStructure.SetActive(false);
+        }
     }
 }

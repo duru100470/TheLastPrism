@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     private ToolInfo startPickaxeInfo;
     [SerializeField]
     private ToolInfo startHammerInfo;
+    [SerializeField]
+    private StructureInfo debug;
 
     public GameObject ItemPrefab => itemPrefab;
     public GameObject TestPrefab => testPrefab;
@@ -39,9 +41,11 @@ public class GameManager : MonoBehaviour
     private void Start() {
         Item startPickaxe = new ItemTool(startPickaxeInfo, 1);
         Item startHammer = new ItemTool(startHammerInfo, 1);
+        Item dev = new ItemStructure(debug, 1);
 
         UIManager.Instance.Inventory.AcquireItem(ref startPickaxe);
         UIManager.Instance.Inventory.AcquireItem(ref startHammer);
+        UIManager.Instance.Inventory.AcquireItem(ref dev);
     }
 
     private IEnumerator DoGameTick()

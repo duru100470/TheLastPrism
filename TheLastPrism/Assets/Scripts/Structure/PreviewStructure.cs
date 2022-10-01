@@ -9,6 +9,8 @@ public class PreviewStructure : MonoBehaviour
     [SerializeField]
     private int width = 1;
 
+    public int Width { get { return width; } set { width = value; } }
+
     private void Start()
     {
         player = GameManager.Instance.CurPlayer.gameObject;
