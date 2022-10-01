@@ -36,7 +36,7 @@ public class StructureEditor : Editor
         }
         if (GUILayout.Button("Add Structure"))
         {
-            structure.DropItemList.Add(new ItemBlock(null, 1));
+            structure.DropItemList.Add(new ItemStructure(null, 1));
         }
         GUILayout.EndHorizontal();
         serializedObject.ApplyModifiedProperties();

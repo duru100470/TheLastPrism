@@ -34,6 +34,10 @@ public class TileEditor : Editor
         {
             tile.DropItemList.Add(new ItemBlock(null, 1));
         }
+        if (GUILayout.Button("Add Structure"))
+        {
+            tile.DropItemList.Add(new ItemStructure(null, 1));
+        }
         GUILayout.EndHorizontal();
         serializedObject.ApplyModifiedProperties();
     }

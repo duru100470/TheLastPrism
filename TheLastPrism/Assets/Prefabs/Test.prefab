@@ -101,7 +101,17 @@ MonoBehaviour:
   width: 2
   floorPosList: []
   health: 10
+  dropItemList:
+  - rid: 2326054271751815171
   hammerMultiplier: 5
+  references:
+    version: 2
+    RefIds:
+    - rid: 2326054271751815171
+      type: {class: ItemStructure, ns: , asm: Assembly-CSharp}
+      data:
+        amount: 1
+        structureInfo: {fileID: 11400000, guid: de9f7477bc0969844a4beddca3970685, type: 2}
 --- !u!61 &3867591147930068117
 BoxCollider2D:
   m_ObjectHideFlags: 0

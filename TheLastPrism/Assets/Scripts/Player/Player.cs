@@ -175,7 +175,7 @@ public class Player : MonoBehaviour, IDamage
 
     public Collider2D[] GetAttackedCollider2D(LayerMask attackMask)
     {
-        return Physics2D.OverlapCircleAll(attackPoint.position * (playerController.IsHeadingRight ? 1 : -1), attackRange, attackMask);
+        return Physics2D.OverlapCircleAll(attackPoint.position, attackRange, attackMask);
     }
 
     private void OnTriggerStay2D(Collider2D other)

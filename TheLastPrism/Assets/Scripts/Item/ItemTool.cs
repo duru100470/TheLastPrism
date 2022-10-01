@@ -35,7 +35,7 @@ public class ItemTool : Item
     {
         // Check if entity is hit
         Collider2D[] entityColls = GameManager.Instance.CurPlayer.GetAttackedCollider2D(LayerMask.GetMask("Enemy"));
-        if (entityColls is not null)
+        if (entityColls.Length > 0)
         {
             foreach (var coll in entityColls)
             {
@@ -48,7 +48,7 @@ public class ItemTool : Item
 
         // Check if structure is hit
         Collider2D[] structureColls = GameManager.Instance.CurPlayer.GetAttackedCollider2D(LayerMask.GetMask("Structure"));
-        if (structureColls is not null)
+        if (structureColls.Length > 0)
         {
             foreach (var coll in structureColls)
             {

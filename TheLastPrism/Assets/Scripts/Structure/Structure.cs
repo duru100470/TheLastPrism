@@ -50,6 +50,18 @@ public abstract class Structure : MonoBehaviour, IListener, IDamage
     public abstract void GetDamage(int amount, DAMAGE_TYPE dmgType, float invTime, bool ignoreInvTime);
     public virtual void Dead()
     {
+        foreach (var item in dropItemList)
+        {
+            GameObject itemPrefab = Instantiate(GameManager.Instance.ItemPrefab);
+            itemPrefab.transform.position = transform.position + new Vector3(Random.Range(-0.2f, 0.2f) + width * .5f, Random.Range(-0.2f, 0.2f) + .5f);
+
+            // CreateItemCounter(itemPrefab);
+
+            ItemController ic = itemPrefab.GetComponent<ItemController>();
+            ic.item = item.DeepCopy();
+            ic.UpdateSprite();
+            ic.SetAcquirable(0f);
+        }
         Destroy(this.gameObject);
         EventManager.Instance.RemoveListener(EVENT_TYPE.TileChange, this);
     }
