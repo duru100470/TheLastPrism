@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  tileType: 2
+  maxHealth: 0
+  tileId: 2
   dropItemList:
   - rid: 2535915331107422223
   handMultiplier: 0

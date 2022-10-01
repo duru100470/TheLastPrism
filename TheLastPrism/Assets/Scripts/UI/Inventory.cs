@@ -40,7 +40,7 @@ public class Inventory : MonoBehaviour
                 slot.AddItem(ref _item);
                 isSuccessful = true;
             }
-            if (slot.item.ItemInfo.itemType == _item.ItemInfo.itemType && !slot.IsSlotFull())
+            if (slot.item.ItemInfo.itemId == _item.ItemInfo.itemId && !slot.IsSlotFull())
             {
                 slot.AddItem(ref _item);
                 isSuccessful = true;
@@ -63,13 +63,13 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public bool FindItem(ITEM_TYPE itemType, int amount)
+    public bool FindItem(ITEM_ID itemType, int amount)
     {
         int total = 0;
 
         foreach (var slot in slots)
         {
-            if (slot.item.ItemInfo.itemType == itemType)
+            if (slot.item.ItemInfo.itemId == itemType)
                 total += slot.item.Amount;
         }
 
@@ -106,7 +106,7 @@ public class Inventory : MonoBehaviour
         return isSuccessful;
     }
     
-    public bool RemoveItem(ITEM_TYPE itemType, int amount)
+    public bool RemoveItem(ITEM_ID itemType, int amount)
     {
         bool isSuccessful = false;
 

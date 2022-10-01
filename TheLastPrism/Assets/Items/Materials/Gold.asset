@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Gold
   itemDescription: gold
-  itemType: 7
+  itemId: 7
   itemSprite: {fileID: -2116483828, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
   maxStack: 99

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Sand
   itemDescription: sand
-  itemType: 3
+  itemId: 3
   itemSprite: {fileID: 594153791, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
   maxStack: 99
-  tileType: 3
+  tileId: 0

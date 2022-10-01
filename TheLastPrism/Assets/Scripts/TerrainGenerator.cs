@@ -121,11 +121,11 @@ public class TerrainGenerator : MonoBehaviour
 
                 // For generating the floor of ocean
                 if (y == Mathf.FloorToInt(height - sandHeight) && (x < worldXSize * .5f - planeWidth || x > worldXSize * .5f + planeWidth))
-                    TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Dirt);
+                    TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.Dirt);
 
                 if (y > height - sandHeight)
                 {
-                    TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Sand);
+                    TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.Sand);
                     continue;
                 }
 
@@ -135,38 +135,38 @@ public class TerrainGenerator : MonoBehaviour
                     if (!cavernMatrix[x, y]) continue;
 
                     if (y > height - dirtHeight)
-                        TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Dirt);
+                        TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.Dirt);
                     else
                     {
                         if (y > darkStoneHeight)
                         {
                             if (tileAtlas.oreDatas[4].spread.GetPixel(x, y).r > tileAtlas.oreDatas[4].size && y <= tileAtlas.oreDatas[4].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.StoneLuxShardOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.StoneLuxShardOre);
                             else if (tileAtlas.oreDatas[3].spread.GetPixel(x, y).r > tileAtlas.oreDatas[3].size && y <= tileAtlas.oreDatas[3].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.StoneGoldOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.StoneGoldOre);
                             else if (tileAtlas.oreDatas[2].spread.GetPixel(x, y).r > tileAtlas.oreDatas[2].size && y <= tileAtlas.oreDatas[2].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.StoneIronOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.StoneIronOre);
                             else if (tileAtlas.oreDatas[1].spread.GetPixel(x, y).r > tileAtlas.oreDatas[1].size && y <= tileAtlas.oreDatas[1].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.StoneCopperOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.StoneCopperOre);
                             else if (tileAtlas.oreDatas[0].spread.GetPixel(x, y).r > tileAtlas.oreDatas[0].size && y <= tileAtlas.oreDatas[0].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.StoneCoalOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.StoneCoalOre);
                             else
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.Stone);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.Stone);
                         }
                         else
                         {
                             if (tileAtlas.oreDatas[4].spread.GetPixel(x, y).r > tileAtlas.oreDatas[4].size && y <= tileAtlas.oreDatas[4].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.DarkStoneLuxShardOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.DarkStoneLuxShardOre);
                             else if (tileAtlas.oreDatas[3].spread.GetPixel(x, y).r > tileAtlas.oreDatas[3].size && y <= tileAtlas.oreDatas[3].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.DarkStoneGoldOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.DarkStoneGoldOre);
                             else if (tileAtlas.oreDatas[2].spread.GetPixel(x, y).r > tileAtlas.oreDatas[2].size && y <= tileAtlas.oreDatas[2].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.DarkStoneIronOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.DarkStoneIronOre);
                             else if (tileAtlas.oreDatas[1].spread.GetPixel(x, y).r > tileAtlas.oreDatas[1].size && y <= tileAtlas.oreDatas[1].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.DarkStoneCopperOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.DarkStoneCopperOre);
                             else if (tileAtlas.oreDatas[0].spread.GetPixel(x, y).r > tileAtlas.oreDatas[0].size && y <= tileAtlas.oreDatas[0].maxSpawnHeight)
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.DarkStoneCoalOre);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.DarkStoneCoalOre);
                             else
-                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_TYPE.DarkStone);
+                                TileManager.Instance.PlaceTile(new Coordinate(x, y), TILE_ID.DarkStone);
                         }
                     }
                 }

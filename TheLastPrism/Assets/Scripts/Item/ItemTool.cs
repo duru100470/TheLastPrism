@@ -12,6 +12,13 @@ public class ItemTool : Item
     public override ItemInfo ItemInfo => toolInfo;
     public override int Amount { get => amount; set => amount = Mathf.Clamp(value, 0, ItemInfo.maxStack); }
 
+    public ItemTool(ToolInfo itemInfo, int amount)
+    {
+        this.toolInfo = itemInfo;
+        this.amount = amount;
+        this.durability = itemInfo.maxDurability;
+    }
+
     public ItemTool(ToolInfo itemInfo, int amount, int durability)
     {
         this.toolInfo = itemInfo;

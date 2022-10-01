@@ -28,13 +28,20 @@ public class UIManager : MonoBehaviour, IListener
         }
     }
 
-    private void Update()
+    private void Start()
     {
+        EventManager.Instance.AddListener(EVENT_TYPE.PlayerHPChanged, this);
+        
         playerHealthTMP.text = GameManager.Instance.CurPlayer.Health.ToString();
     }
 
     public void OnEvent(EVENT_TYPE eType, Component sender, object param = null)
     {
-
+        switch (eType)
+        {
+            case EVENT_TYPE.PlayerHPChanged:
+                playerHealthTMP.text = GameManager.Instance.CurPlayer.Health.ToString();
+                break;
+        }
     }
 }

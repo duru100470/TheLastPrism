@@ -45,7 +45,7 @@ public class ItemBlock : Item
             (coor.Y > 0 && tileArray[coor.X, coor.Y - 1] != null)
         )
         {
-            if (TileManager.Instance.PlaceTile(coor, blockInfo.tileType))
+            if (TileManager.Instance.PlaceTile(coor, blockInfo.tileId))
                 Amount--;
         }
     }

@@ -7,7 +7,7 @@ public class ItemInfo : ScriptableObject
 {
     public string itemName;
     public string itemDescription;
-    public ITEM_TYPE itemType;
+    public ITEM_ID itemId;
     public Sprite itemSprite;
     public int maxStack;
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Dark Stone
   itemDescription: darkstone
-  itemType: 2
+  itemId: 2
   itemSprite: {fileID: -807781280, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
   maxStack: 99
-  tileType: 2
+  tileId: 0

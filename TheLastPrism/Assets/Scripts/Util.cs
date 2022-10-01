@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TILE_TYPE
+public enum TILE_ID
 {
     Dirt,
     Stone,
@@ -21,7 +21,7 @@ public enum TILE_TYPE
     Debug
 }
 
-public enum ITEM_TYPE
+public enum ITEM_ID
 {
     Dirt,
     Stone,
@@ -32,7 +32,15 @@ public enum ITEM_TYPE
     IronOre,
     GoldOre,
     LuxShardOre,
+    StonePickaxe,
+    StoneHammer,
+    Workbench,
     Debug
+}
+
+public enum STRUCTURE_ID
+{
+    Workbench
 }
 
 [System.Serializable]

@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Lux Shard
   itemDescription: lux shard
-  itemType: 8
+  itemId: 8
   itemSprite: {fileID: 2055513839, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
   maxStack: 99

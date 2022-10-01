@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Coal
   itemDescription: coal
-  itemType: 4
+  itemId: 4
   itemSprite: {fileID: -1222556708, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
   maxStack: 99

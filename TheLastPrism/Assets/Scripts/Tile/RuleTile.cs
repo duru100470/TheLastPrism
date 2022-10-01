@@ -537,7 +537,7 @@ public class RuleTile : Tile
         Tile target = TileManager.Instance.TileArray[Pos.X - 1, Pos.Y];
         if (target == null)
             return false;
-        if (target.TileType == this.TileType)
+        if (target.TileId == this.TileId)
             return true;
         else
             return false;
@@ -549,7 +549,7 @@ public class RuleTile : Tile
         Tile target = TileManager.Instance.TileArray[Pos.X + 1, Pos.Y];
         if (target == null)
             return false;
-        if (target.TileType == this.TileType)
+        if (target.TileId == this.TileId)
             return true;
         else
             return false;
@@ -561,7 +561,7 @@ public class RuleTile : Tile
         Tile target = TileManager.Instance.TileArray[Pos.X, Pos.Y + 1];
         if (target == null)
             return false;
-        if (target.TileType== this.TileType)
+        if (target.TileId== this.TileId)
             return true;
         else
             return false;
@@ -573,7 +573,7 @@ public class RuleTile : Tile
         Tile target = TileManager.Instance.TileArray[Pos.X, Pos.Y - 1];
         if (target == null)
             return false;
-        if (target.TileType== this.TileType)
+        if (target.TileId== this.TileId)
             return true;
         else
             return false;
@@ -586,7 +586,7 @@ public class RuleTile : Tile
         Tile target = TileManager.Instance.TileArray[Pos.X - 1, Pos.Y + 1];
         if (target == null)
             return false;
-        if (target.TileType== this.TileType)
+        if (target.TileId== this.TileId)
             return true;
         else
             return false;
@@ -599,7 +599,7 @@ public class RuleTile : Tile
         Tile target = TileManager.Instance.TileArray[Pos.X + 1, Pos.Y + 1];
         if (target == null)
             return false;
-        if (target.TileType== this.TileType)
+        if (target.TileId== this.TileId)
             return true;
         else
             return false;
@@ -612,7 +612,7 @@ public class RuleTile : Tile
         Tile target = TileManager.Instance.TileArray[Pos.X - 1, Pos.Y - 1];
         if (target == null)
             return false;
-        if (target.TileType== this.TileType)
+        if (target.TileId== this.TileId)
             return true;
         else
             return false;
@@ -625,7 +625,7 @@ public class RuleTile : Tile
         Tile target = TileManager.Instance.TileArray[Pos.X + 1, Pos.Y - 1];
         if (target == null)
             return false;
-        if (target.TileType== this.TileType)
+        if (target.TileId== this.TileId)
             return true;
         else
             return false;

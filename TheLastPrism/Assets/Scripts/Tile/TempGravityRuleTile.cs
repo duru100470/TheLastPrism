@@ -26,7 +26,7 @@ public class TempGravityRuleTile : MonoBehaviour
         {
             TileManager.Instance.PlaceTile(
                 new Coordinate(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y)), 
-                baseTile.TileType, 
+                baseTile.TileId, 
                 baseTile.Health);
             Destroy(this.gameObject);
         }

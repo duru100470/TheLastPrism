@@ -10,7 +10,7 @@ public class Tile : MonoBehaviour, IDamage
     [SerializeField]
     private int maxHealth;
     [SerializeField]
-    private TILE_TYPE tileType;
+    private TILE_ID tileId;
     [SerializeReference]
     private List<Item> dropItemList;
 
@@ -21,7 +21,7 @@ public class Tile : MonoBehaviour, IDamage
     private float pickaxeMultiplier = 5;
 
     public Coordinate Pos { get; set; }
-    public TILE_TYPE TileType => tileType;
+    public TILE_ID TileId => tileId;
     public List<Item> DropItemList => dropItemList;
     public int Health => health;
     public TileCrackEffect crackEffect { get; set; }

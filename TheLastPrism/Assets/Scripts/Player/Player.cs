@@ -17,6 +17,10 @@ public class Player : MonoBehaviour, IDamage
     private float attackRange;
     private PlayerController playerController;
 
+    [Header("Guitar")]
+    [SerializeField]
+    private GameObject previewStructure;
+
     public int Health => health;
 
     private void OnDrawGizmos()
@@ -60,7 +64,7 @@ public class Player : MonoBehaviour, IDamage
         {
             GameObject test = Instantiate(GameManager.Instance.TestPrefab);
 
-            test.transform.position = new Vector3(Mathf.FloorToInt(transform.position.x), Mathf.FloorToInt(transform.position.y), 0);
+            test.transform.position = previewStructure.transform.position;
             test.GetComponent<Structure>().SetPosition(Coordinate.WorldPointToCoordinate(transform.position));
         }
     }

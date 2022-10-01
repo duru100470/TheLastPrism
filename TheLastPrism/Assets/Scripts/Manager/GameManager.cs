@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     private GameObject itemPrefab;
     [SerializeField]
     private GameObject testPrefab;
+    [SerializeField]
+    private ToolInfo startPickaxeInfo;
+    [SerializeField]
+    private ToolInfo startHammerInfo;
 
     public GameObject ItemPrefab => itemPrefab;
     public GameObject TestPrefab => testPrefab;
@@ -28,8 +32,16 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        CurPlayer = GameObject.Find("Player").GetComponent<Player>();
+        CurPlayer = GameObject.Find("PlayerController").GetComponent<Player>();
         StartCoroutine(DoGameTick());
+    }
+
+    private void Start() {
+        Item startPickaxe = new ItemTool(startPickaxeInfo, 1);
+        Item startHammer = new ItemTool(startHammerInfo, 1);
+
+        UIManager.Instance.Inventory.AcquireItem(ref startPickaxe);
+        UIManager.Instance.Inventory.AcquireItem(ref startHammer);
     }
 
     private IEnumerator DoGameTick()

@@ -12,9 +12,12 @@ public abstract class Structure : MonoBehaviour, IListener, IDamage
     private List<Coordinate> floorPosList;
     [SerializeField]
     protected int health;
+    [SerializeReference]
+    private List<Item> dropItemList;
 
     public List<Coordinate> FloorPosList => floorPosList;
     public int Health => health;
+    public List<Item> DropItemList => dropItemList;
 
     public virtual void Awake()
     {

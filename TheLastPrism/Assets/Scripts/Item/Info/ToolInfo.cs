@@ -5,4 +5,5 @@ public class ToolInfo : ItemInfo
 {
     public DAMAGE_TYPE dmgType;
     public int damage;
+    public int maxDurability;
 }
