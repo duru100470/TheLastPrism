@@ -27,6 +27,14 @@ public class ItemStructure : Item
 
     public override void OnRightClick()
     {
+        PreviewStructure previewStructure =GameManager.Instance.CurPlayer.PreviewStructure.GetComponent<PreviewStructure>() ;
+        if (!previewStructure.IsPositionValid) return;
 
+        GameObject test = GameObject.Instantiate(GameManager.Instance.TestPrefab);
+
+        test.transform.position = previewStructure.transform.position;
+        test.GetComponent<Structure>().SetPosition(Coordinate.WorldPointToCoordinate(previewStructure.transform.position));
+
+        amount--;
     }
 }

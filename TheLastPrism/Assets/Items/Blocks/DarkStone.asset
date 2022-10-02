@@ -17,4 +17,4 @@ MonoBehaviour:
   itemId: 2
   itemSprite: {fileID: -807781280, guid: 1eb7fcf59c9578747b89ce50d7991ead, type: 3}
   maxStack: 99
-  tileId: 0
+  tileId: 2

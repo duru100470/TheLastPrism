@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     private void Start() {
         Item startPickaxe = new ItemTool(startPickaxeInfo, 1);
         Item startHammer = new ItemTool(startHammerInfo, 1);
-        Item dev = new ItemStructure(debug, 1);
+        Item dev = new ItemStructure(debug, 99);
 
         UIManager.Instance.Inventory.AcquireItem(ref startPickaxe);
         UIManager.Instance.Inventory.AcquireItem(ref startHammer);

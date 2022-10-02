@@ -22,6 +22,7 @@ public class Player : MonoBehaviour, IDamage
     private GameObject previewStructure;
 
     public int Health => health;
+    public GameObject PreviewStructure => previewStructure;
 
     private void OnDrawGizmos()
     {
@@ -62,10 +63,10 @@ public class Player : MonoBehaviour, IDamage
         // For debug
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            GameObject test = Instantiate(GameManager.Instance.TestPrefab);
+            // GameObject test = Instantiate(GameManager.Instance.TestPrefab);
 
-            test.transform.position = previewStructure.transform.position;
-            test.GetComponent<Structure>().SetPosition(Coordinate.WorldPointToCoordinate(transform.position));
+            // test.transform.position = previewStructure.transform.position;
+            // test.GetComponent<Structure>().SetPosition(Coordinate.WorldPointToCoordinate(transform.position));
         }
     }
 
@@ -200,6 +201,7 @@ public class Player : MonoBehaviour, IDamage
         {
             previewStructure.SetActive(true);
             previewStructure.GetComponent<SpriteRenderer>().sprite = (item.ItemInfo as StructureInfo).structureSprite;
+            previewStructure.GetComponent<PolygonCollider2D>().TryUpdateShapeToAttachedSprite();
             previewStructure.GetComponent<PreviewStructure>().Width = (item.ItemInfo as StructureInfo).width;
         }
         else
