@@ -2616,7 +2616,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemPrefab: {fileID: 83162629236576497, guid: 4593dfa76227bdb4f827ba35519f89a7, type: 3}
-  testPrefab: {fileID: 5365563110113264625, guid: 6e73c5f1de7ab5444b1afe020352aade, type: 3}
+  testPrefab: {fileID: 1361133412012249823, guid: 8aa74f75e1031674ea06b556b401e228, type: 3}
   startPickaxeInfo: {fileID: 11400000, guid: 22f4629d9878f3d4a82a335a095930a3, type: 2}
   startHammerInfo: {fileID: 11400000, guid: 8049645edf4068d4b8596e4ae329808d, type: 2}
   debug: {fileID: 11400000, guid: de9f7477bc0969844a4beddca3970685, type: 2}

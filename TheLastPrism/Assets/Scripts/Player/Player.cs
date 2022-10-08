@@ -63,10 +63,10 @@ public class Player : MonoBehaviour, IDamage
         // For debug
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            // GameObject test = Instantiate(GameManager.Instance.TestPrefab);
+            GameObject test = Instantiate(GameManager.Instance.TestPrefab);
 
-            // test.transform.position = previewStructure.transform.position;
-            // test.GetComponent<Structure>().SetPosition(Coordinate.WorldPointToCoordinate(transform.position));
+            test.transform.position = transform.position.Floor();
+            test.GetComponent<Structure>().SetPosition(Coordinate.WorldPointToCoordinate(transform.position));
         }
     }
 

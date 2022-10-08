@@ -19,7 +19,7 @@ public abstract class Structure : MonoBehaviour, IListener, IDamage
     public int Health => health;
     public List<Item> DropItemList => dropItemList;
 
-    public virtual void Awake()
+    protected virtual void Awake()
     {
         EventManager.Instance.AddListener(EVENT_TYPE.TileChange, this);
     }
